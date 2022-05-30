@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * { margin: 0; padding: 0; }
+        li { list-style : none; }
+        article { width: 100%;max-width: 1400px; margin: 150px auto; padding: 50px 0; background: #000;}
+
+        .clearfix::after {display: block; content: ''; clear:both;}
+        .tb { display: table;  width: 100%; height: 100%;}
+        .tbc { display: table-cell; width: 100%; height: 100%; vertical-align: middle; }
+        .dpb { display: block;}
+        .pic { background-size: cover; background-position: center center; background-repeat: no-repeat;}
+        .pic img { width: 100%; max-width: 100%; height: auto; opacity: 0; visibility: hidden;}
+        a {text-decoration: none; color: #222}
+        .bg {background-size: cover; background-position: center center; background-repeat: no-repeat;}
+
+
+        ul.list1 { /*font-size: 0;*/ width: 105%;margin-left: -5%; margin-top: -3%; }
+        ul.list1 li { float: left; width: 28.333%; margin-left: 5%; margin-top: 3%; position: relative;}
+
+        ul.list1 li a {/*text-align: center; box-sizing: border-box;*/ display: block; text-align: center;}
+        ul.list1 li .imgs { position: relative; top: 0; left: 0; max-width: 420px; height: 240px; border-top-left-radius: 50px; border-bottom-right-radius: 50px; overflow: hidden; padding: 30px; box-sizing: border-box;} 
+        ul.list1 li .imgs span { width: 100%; position: absolute; bottom: 25px; left: 0; color: #fff}
+
+        ul.list1 li .over { opacity: 0; height: 240px; position: absolute;top: 0;left: 0;width: 100%; transition: all .2s;}
+        ul.list1 li .over::before{width: 100%; height: 100%; background: rgba(0,0,0, 0.8); content: ''; display: block; clear: both; position: absolute; left: 0;top: 0; opacity: 0; transition: all .2s; -webkit-transition: all .2s;box-sizing: border-box; border-top-left-radius: 50px; border-bottom-right-radius: 50px; border: 3px solid #6cd0cf; }
+        ul.list1 li .over .tbc{ position: relative; z-index: 1;  }
+        ul.list1 li .over span {font-size: 2.4rem; font-weight: 500; letter-spacing: -0px; line-height: 0.8; color: #6cd0cf; vertical-align: middle; z-index: 10;}
+            
+        ul.list1 li:hover .over { opacity: 1;}
+        ul.list1 li:hover .over::before {opacity: 1; }
+        ul.list1 li:hover .imgs span {opacity: 0 }
+
+        /*******************************************/
+
+        ul.list2 { /*font-size: 0;*/ width: 105%;margin-left: -5%; margin-top: -3%; }
+        ul.list2 li { float: left; width: 28.333%; margin-left: 5%; margin-top: 3%; position: relative;}
+        ul.list2 li.last{margin-top:90px}
+        ul.list2 li a{display:block;}
+
+        ul.list2 li:hover  .pic_wrap{border-top-right-radius:60px;overflow:hidden}
+        /*ul.list2 li a:hover span{background-image:url('/img/con1_bf_on.png');color:#fab446}*/
+        ul.list2 li a:hover .tb:before{opacity:0.9}
+        ul.list2 li a:hover .tbc{opacity:1}
+
+        ul.list2 li .pic_wrap{margin-top:50px;position:relative;background-size:cover;background-position:center center; background-repeat:no-repeat;text-align:center;transition:all .4s;-webkit-transition:all .4s;box-shadow: 13px 11px 25px 0px rgba(0, 0, 0, 0.15);}
+        ul.list2 li .pic_wrap:first-child{margin-top:0}
+        ul.list2 li span{position:absolute;z-index:2;font-family: 'Montserrat','Noto Sans KR', sans-serif;left:10px;top:20px;color:#fff;font-size:1.7rem;line-height:66px;background-image:url('/img/con1_bf.png');width:66px;height:66px;text-align: left;font-weight:900;line-height: ;display:block;background-size:auto;background-position:center center;background-repeat:no-repeat;padding-left: 19px;box-sizing: border-box;transition:all .4s;-webkit-transition:all .4s;}
+        ul.list2 li .tb{height:240px;width:420px;position:relative ;color:#fff;}
+        ul.list2 li .tb:before{width:100%; height:100%;background: rgb(252,160,16);background: linear-gradient(120deg,rgba(252,191,61,1) 0%, rgba(252,160,16,1)  100%);content:''; position:absolute; left:0;top:0;opacity:0;transition:all .4s;-webkit-transition:all .4s;}
+        ul.list2 li .tbc{position:relative;z-index:1;opacity:0;transition:all .4s;-webkit-transition:all .4s;}
+        ul.list2 li .tbc b{display:block;font-size:3.2rem;font-weight:900;line-height:1; letter-spacing:-0.075em;}
+        ul.list2 li .tbc p{max-width:170px; width:100%; display:inline-block; line-height:45px; font-size:1.6rem;font-weight:500;letter-spacing:-0.075em;margin-top:20px; border:1px solid #fff; border-radius:22.5px;}
+
+        /*******************************************/
+
+        ul.list3 { /*font-size: 0;*/ width: 105%;margin-left: -5%; margin-top: -3%; }
+        ul.list3 li { float: left; width: 28.333%; margin-left: 5%; margin-top: 3%; position: relative;}
+
+        ul.list3 li a {display:block; width:auto; border: 3px solid #000; box-sizing: border-box;}
+        ul.list3 li a .txt{padding:40px 30px;box-sizing:Border-box; background:#fff;}       
+        ul.list3 li a .txt b{display:block;color:#666; font-size:1.8rem;font-weight:700; line-height:1;}
+        ul.list3 li a .txt span{font-family: 'Montserrat','Noto Sans KR', sans-serif;display:block;font-size:1.3rem; color:#666;margin-top:15px}
+
+        ul.list3 li a:hover { border: 3px solid #6cd0cf;  }
+
+        /*******************************************/
+
+        .imglist_ul {font-size:0;width:800px;margin:0 auto;padding:10px;}
+        .imglist_ul > li {display:inline-block;width:33.3%;vertical-align:top;font-size:12px;}
+        
+        a {display:block;width:auto;color:#fff;margin:5px 5px 10px 5px;}
+        a .screen {position:relative;overflow:hidden;padding-bottom:56.25%;}
+        a .screen img {position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:100%;z-index:1;}
+        a .screen span {display:block;position:absolute;transition:all .2s;background:#30d0c6;z-index:2;}
+
+        a .screen span:nth-child(1) {top:0;height:5px;width:0;}
+        a .screen span:nth-child(2) {top:0;right:0;width:5px;height:0;}
+        a .screen span:nth-child(3) {bottom:0;right:0;height:5px;width:0;}
+        a .screen span:nth-child(4) {bottom:0;left:0;width:5px;height:0;}
+        a:hover .screen span:nth-child(1) {width:100%;}
+        a:hover .screen span:nth-child(2) {height:100%;transition-delay:.1s;}
+        a:hover .screen span:nth-child(3) {width:100%;transition-delay:.2s;}
+        a:hover .screen span:nth-child(4) {height:100%;transition-delay:.3s;}
+
+        a h3 {margin:20px 10px;font-size:25px;}
+        a p {font-family: 'NanumSquare';margin:0 10px;font-size:12px;line-height:18px;}
+    
+    </style>
+</head>
+<body>
+    <article>
+        <ul class="list1 clearfix">
+          <li>
+            <a href="javascript:;">
+              <div class="imgs tb bg" style="background-image: url('https://yujiseon.github.io/training/test4.png')">
+                <div class="tbc">
+                  <span>Ocean observation laboratory1</span>
+                </div>
+              </div>
+              <div class="over tb">
+                <div class="tbc">
+                  <span>Ocean observation laboratory1</span>
+                </div>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:;">
+                <div class="imgs tb bg" style="background-image: url('https://yujiseon.github.io/training/test4.png')">
+                  <div class="tbc">
+                    <span>Ocean observation laboratory2</span>
+                  </div>
+                </div>
+                <div class="over tb">
+                  <div class="tbc">
+                    <span>Ocean observation laboratory2</span>
+                  </div>
+                </div>
+              </a>
+          </li>
+          <li>
+            <a href="javascript:;">
+                <div class="imgs tb bg" style="background-image: url('https://yujiseon.github.io/training/test4.png')">
+                  <div class="tbc">
+                    <span>Ocean observation laboratory3</span>
+                  </div>
+                </div>
+                <div class="over tb">
+                  <div class="tbc">
+                    <span>Ocean observation laboratory3</span>
+                  </div>
+                </div>
+              </a>
+          </li>
+          <li>
+            <a href="javascript:;">
+                <div class="imgs tb bg" style="background-image: url('https://yujiseon.github.io/training/test4.png')">
+                  <div class="tbc">
+                    <span>Ocean observation laboratory4</span>
+                  </div>
+                </div>
+                <div class="over tb">
+                  <div class="tbc">
+                    <span>Ocean observation laboratory4</span>
+                  </div>
+                </div>
+              </a>
+          </li>
+          <li>
+            <a href="javascript:;">
+                <div class="imgs tb bg" style="background-image: url('https://yujiseon.github.io/training/test4.png')">
+                  <div class="tbc">
+                    <span>Ocean observation laboratory5</span>
+                  </div>
+                </div>
+                <div class="over tb">
+                  <div class="tbc">
+                    <span>Ocean observation laboratory5</span>
+                  </div>
+                </div>
+              </a>
+          </li>
+          <li>
+            <a href="javascript:;">
+                <div class="imgs tb bg" style="background-image: url('https://yujiseon.github.io/training/test4.png')">
+                  <div class="tbc">
+                    <span>Ocean observation laboratory6</span>
+                  </div>
+                </div>
+                <div class="over tb">
+                  <div class="tbc">
+                    <span>Ocean observation laboratory6</span>
+                  </div>
+                </div>
+              </a>
+          </li>
+        </ul>
+      </article>
+      
+      
+      <article>
+        <ul class="list2 clearfix">
+          <li>
+						<div class="pic_wrap" style="background-image:url('https://yujiseon.github.io/training/test4.png')">
+							<a href="javascript:;">
+								<span>01</span>
+								<div class="shd tb">
+									<div class="tbc">
+										<b>Ocean observation laboratory1</b>
+									</div>
+								</div>
+							</a>
+						</div>
+					</li>
+          <li>
+						<div class="pic_wrap" style="background-image:url('https://yujiseon.github.io/training/test4.png')">
+							<a href="javascript:;">
+								<span>01</span>
+								<div class="shd tb">
+									<div class="tbc">
+										<b>Ocean observation laboratory2</b>
+									</div>
+								</div>
+							</a>
+						</div>
+          </li>
+          <li>
+						<div class="pic_wrap" style="background-image:url('https://yujiseon.github.io/training/test4.png')">
+							<a href="javascript:;">
+								<span>01</span>
+								<div class="shd tb">
+									<div class="tbc">
+										<b>Ocean observation laboratory3</b>
+									</div>
+								</div>
+							</a>
+						</div>
+          </li>
+          <li>
+						<div class="pic_wrap" style="background-image:url('https://yujiseon.github.io/training/test4.png')">
+							<a href="javascript:;">
+								<span>01</span>
+								<div class="shd tb">
+									<div class="tbc">
+										<b>Ocean observation laboratory4</b>
+									</div>
+								</div>
+							</a>
+						</div>
+          </li>
+          <li>
+						<div class="pic_wrap" style="background-image:url('https://yujiseon.github.io/training/test4.png')">
+							<a href="javascript:;">
+								<span>01</span>
+								<div class="shd tb">
+									<div class="tbc">
+										<b>Ocean observation laboratory5</b>
+									</div>
+								</div>
+							</a>
+						</div>
+          </li>
+          <li>
+						<div class="pic_wrap" style="background-image:url('https://yujiseon.github.io/training/test4.png')">
+							<a href="javascript:;">
+								<span>01</span>
+								<div class="shd tb">
+									<div class="tbc">
+										<b>Ocean observation laboratory6</b>
+									</div>
+								</div>
+							</a>
+						</div>
+          </li>
+        </ul>
+      </article>
+
+      <article>
+        <ul class="list3 clearfix">
+          <li>
+            <a href="javascript:;">
+              <div class="pic" style="background-image:url('https://yujiseon.github.io/training/test5.png')">
+                <img src="https://yujiseon.github.io/training/test5.png">
+              </div>
+              <div class="txt">
+                <b>GilDong, Hong</b>
+                <span>123456@naver.com</span>
+              </div>
+            </a>
+					</li>
+          <li>
+            <a href="javascript:;">
+              <div class="pic" style="background-image:url('https://yujiseon.github.io/training/test5.png')">
+                <img src="https://yujiseon.github.io/training/test5.png">
+              </div>
+              <div class="txt">
+                <b>GilDong, Hong</b>
+                <span>123456@naver.com</span>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:;">
+              <div class="pic" style="background-image:url('https://yujiseon.github.io/training/test5.png')">
+                <img src="https://yujiseon.github.io/training/test5.png">
+              </div>
+              <div class="txt">
+                <b>GilDong, Hong</b>
+                <span>123456@naver.com</span>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:;">
+              <div class="pic" style="background-image:url('https://yujiseon.github.io/training/test5.png')">
+                <img src="https://yujiseon.github.io/training/test5.png">
+              </div>
+              <div class="txt">
+                <b>GilDong, Hong</b>
+                <span>123456@naver.com</span>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:;">
+              <div class="pic" style="background-image:url('https://yujiseon.github.io/training/test5.png')">
+                <img src="https://yujiseon.github.io/training/test5.png">
+              </div>
+              <div class="txt">
+                <b>GilDong, Hong</b>
+                <span>123456@naver.com</span>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:;">
+              <div class="pic" style="background-image:url('https://yujiseon.github.io/training/test5.png')">
+                <img src="https://yujiseon.github.io/training/test5.png">
+              </div>
+              <div class="txt">
+                <b>GilDong, Hong</b>
+                <span>123456@naver.com</span>
+              </div>
+            </a>
+          </li>
+        </ul>
+      </article>     
+
+      <article>
+        <ul class="imglist_ul">
+          <li>
+            <a href="#">
+              <div class="screen">
+                <span></span><span></span><span></span><span></span>
+                <img src="./img/nike.jpg">
+              </div>
+              <h3>Nike SB</h3>
+              <p>Nike SB는 스케이트보드 보딩을 통해 표현되는 젊음의 창조적 구현과 혁신을 추구합니다.</p>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <div class="screen">
+                <span></span><span></span><span></span><span></span>
+                <img src="./img/nike.jpg">
+              </div>
+              <h3>Nike SB</h3>
+              <p>Nike SB는 스케이트보드 보딩을 통해 표현되는 젊음의 창조적 구현과 혁신을 추구합니다.</p>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <div class="screen">
+                <span></span><span></span><span></span><span></span>
+                <img src="./img/nike.jpg">
+              </div>
+              <h3>Nike SB</h3>
+              <p>Nike SB는 스케이트보드 보딩을 통해 표현되는 젊음의 창조적 구현과 혁신을 추구합니다.</p>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <div class="screen">
+                <span></span><span></span><span></span><span></span>
+                <img src="./img/nike.jpg">
+              </div>
+              <h3>Nike SB</h3>
+              <p>Nike SB는 스케이트보드 보딩을 통해 표현되는 젊음의 창조적 구현과 혁신을 추구합니다.</p>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <div class="screen">
+                <span></span><span></span><span></span><span></span>
+                <img src="./img/nike.jpg">
+              </div>
+              <h3>Nike SB</h3>
+              <p>Nike SB는 스케이트보드 보딩을 통해 표현되는 젊음의 창조적 구현과 혁신을 추구합니다.</p>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <div class="screen">
+                <span></span><span></span><span></span><span></span>
+                <img src="./img/nike.jpg">
+              </div>
+              <h3>Nike SB</h3>
+              <p>Nike SB는 스케이트보드 보딩을 통해 표현되는 젊음의 창조적 구현과 혁신을 추구합니다.</p>
+            </a>
+          </li>
+        </ul>        
+      </article>
+</body>
+</html>
