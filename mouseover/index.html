@@ -19,6 +19,40 @@
         a {text-decoration: none; color: #222}
         .bg {background-size: cover; background-position: center center; background-repeat: no-repeat;}
 
+        /*******************************************/
+
+        ul.list0 { /*font-size: 0;*/ width: 1200px; margin: 0 auto}
+        ul.list0 li { float: left; width: 31.5555%; margin-left: 1.7%;margin-top: 1.7%; position: relative;}
+
+        ul.list0 li a {/*text-align: center; box-sizing: border-box;*/ display: block; margin: 0;}
+        ul.list0 li .imgs { position: relative; top: 0; left: 0; max-width: 387px; height: 367px; border-radius: 20px;
+          overflow: hidden; box-sizing: border-box;} 
+        /* ul.list0 li .imgs span { width: 100%; position: absolute; bottom: 25px; left: 0; color: #fff} */
+        ul.list0 li .imgs .item_info { position: absolute; bottom: 40px; left: 40px; }
+
+        ul.list0 li .imgs:before{width: 100%; height: 100%; content: ''; display: block; clear: both; position: absolute; left: 0;top: 0; opacity: 0; transition: all .2s; -webkit-transition: all .2s;box-sizing: border-box; border-radius: 20px; border: 2px solid #6cd0cf; }
+        ul.list0 li:hover .imgs:before{opacity: 1; }
+
+        /*******************************************/
+    
+        ul.list0_1 { /*font-size: 0;*/ width: 1200px; margin: 0 auto}
+        ul.list0_1 li { float: left; width: 31.5555%; margin-left: 1.7%;margin-top: 1.7%; position: relative;}
+
+        ul.list0_1 li a {/*text-align: center; box-sizing: border-box;*/ display: block; margin: 0;}
+        ul.list0_1 li .imgs { position: relative; top: 0; left: 0; max-width: 387px; height: 367px; border-radius: 20px;
+          overflow: hidden; box-sizing: border-box;} 
+        /* ul.list0 li .imgs span { width: 100%; position: absolute; bottom: 25px; left: 0; color: #fff} */
+        ul.list0_1 li .imgs .item_info { position: absolute; bottom: 40px; left: 40px; }
+
+
+        ul.list0_1 li .over { opacity: 0; height: 367px; position: absolute;top: 0;left: 0;width: 100%; transition: all .2s;}
+        ul.list0_1 li .over::before{width: 100%; height: 100%; content: ''; display: block; clear: both; position: absolute; left: 0;top: 0; opacity: 0; transition: all .2s; -webkit-transition: all .2s;box-sizing: border-box; border-radius: 20px; border: 2px solid #6cd0cf; }
+            
+        ul.list0_1 li:hover .over { opacity: 1;} 
+        ul.list0_1 li:hover .over::before {opacity: 1; }    
+
+
+        /*******************************************/
 
         ul.list1 { /*font-size: 0;*/ width: 105%;margin-left: -5%; margin-top: -3%; }
         ul.list1 li { float: left; width: 28.333%; margin-left: 5%; margin-top: 3%; position: relative;}
@@ -94,7 +128,178 @@
     </style>
 </head>
 <body>
+
+  <!-- <a href="view.php?no=22" class="">
+    <div class="item_img box">	
+      <div class="pic imgs" style="background-image: url('/upload/gallery/1655282620_OkR_20211019_123431.png')">
+        <img src="/img/img_sub5_1_con_img.jpg">
+        <div class="item_info">
+          <p class="tit">셀피아티비 테스트 중입니다.</p>
+          <span class="date  rot">2022.06.15</span>
+        </div>
+      </div>	
+      <img src="/img/img_sub5_1_con_img.jpg" style="visibility:hidden; opacity:0; max-width:100%;">				
+    </div>
+  </a> -->
+
+
     <article>
+      <ul class="list0 clearfix">
+        <li>
+          <a href="javascript:;">
+            <div class="imgs tb bg pic" style="background-image: url('https://yujiseon.github.io/training/test4.png')">
+              <img src="https://yujiseon.github.io/training/test4.png">
+              <div class="item_info">
+                <p class="tit">셀피아티비 테스트 중입니다.</p>
+                <span class="date  rot">2022.06.15</span>
+              </div>
+            </div>
+            <div class="over">
+            </div>
+          </a>
+        </li>
+        <li>
+          <a href="javascript:;">
+            <div class="imgs tb bg pic" style="background-image: url('https://yujiseon.github.io/training/test4.png')">
+              <img src="https://yujiseon.github.io/training/test4.png">
+              <div class="item_info">
+                <p class="tit">셀피아티비 테스트 중입니다.</p>
+                <span class="date  rot">2022.06.15</span>
+              </div>
+            </div>
+          </a>
+        </li>
+        <li>
+          <a href="javascript:;">
+            <div class="imgs tb bg pic" style="background-image: url('https://yujiseon.github.io/training/test4.png')">
+              <img src="https://yujiseon.github.io/training/test4.png">
+              <div class="item_info">
+                <p class="tit">셀피아티비 테스트 중입니다.</p>
+                <span class="date  rot">2022.06.15</span>
+              </div>
+            </div>
+          </a>
+        </li>
+        <li>
+          <a href="javascript:;">
+            <div class="imgs tb bg pic" style="background-image: url('https://yujiseon.github.io/training/test4.png')">
+              <img src="https://yujiseon.github.io/training/test4.png">
+              <div class="item_info">
+                <p class="tit">셀피아티비 테스트 중입니다.</p>
+                <span class="date  rot">2022.06.15</span>
+              </div>
+            </div>
+          </a>
+        </li>
+        <li>
+          <a href="javascript:;">
+            <div class="imgs tb bg pic" style="background-image: url('https://yujiseon.github.io/training/test4.png')">
+              <img src="https://yujiseon.github.io/training/test4.png">
+              <div class="item_info">
+                <p class="tit">셀피아티비 테스트 중입니다.</p>
+                <span class="date  rot">2022.06.15</span>
+              </div>
+            </div>
+          </a>
+        </li>
+        <li>
+          <a href="javascript:;">
+            <div class="imgs tb bg pic" style="background-image: url('https://yujiseon.github.io/training/test4.png')">
+              <img src="https://yujiseon.github.io/training/test4.png">
+              <div class="item_info">
+                <p class="tit">셀피아티비 테스트 중입니다.</p>
+                <span class="date  rot">2022.06.15</span>
+              </div>
+            </div>
+          </a>
+        </li>
+      </ul>
+    </article>
+
+    <article>
+      <ul class="list0_1 clearfix">
+        <li>
+          <a href="javascript:;">
+            <div class="imgs tb bg pic" style="background-image: url('https://yujiseon.github.io/training/test4.png')">
+              <img src="https://yujiseon.github.io/training/test4.png">
+              <div class="item_info">
+                <p class="tit">셀피아티비 테스트 중입니다.</p>
+                <span class="date  rot">2022.06.15</span>
+              </div>
+            </div>
+            <div class="over">
+            </div>
+          </a>
+        </li>
+        <li>
+          <a href="javascript:;">
+            <div class="imgs tb bg pic" style="background-image: url('https://yujiseon.github.io/training/test4.png')">
+              <img src="https://yujiseon.github.io/training/test4.png">
+              <div class="item_info">
+                <p class="tit">셀피아티비 테스트 중입니다.</p>
+                <span class="date  rot">2022.06.15</span>
+              </div>
+            </div>
+            <div class="over">
+            </div>
+          </a>
+        </li>
+        <li>
+          <a href="javascript:;">
+            <div class="imgs tb bg pic" style="background-image: url('https://yujiseon.github.io/training/test4.png')">
+              <img src="https://yujiseon.github.io/training/test4.png">
+              <div class="item_info">
+                <p class="tit">셀피아티비 테스트 중입니다.</p>
+                <span class="date  rot">2022.06.15</span>
+              </div>
+            </div>
+            <div class="over">
+            </div>
+          </a>
+        </li>
+        <li>
+          <a href="javascript:;">
+            <div class="imgs tb bg pic" style="background-image: url('https://yujiseon.github.io/training/test4.png')">
+              <img src="https://yujiseon.github.io/training/test4.png">
+              <div class="item_info">
+                <p class="tit">셀피아티비 테스트 중입니다.</p>
+                <span class="date  rot">2022.06.15</span>
+              </div>
+            </div>
+            <div class="over">
+            </div>
+          </a>
+        </li>
+        <li>
+          <a href="javascript:;">
+            <div class="imgs tb bg pic" style="background-image: url('https://yujiseon.github.io/training/test4.png')">
+              <img src="https://yujiseon.github.io/training/test4.png">
+              <div class="item_info">
+                <p class="tit">셀피아티비 테스트 중입니다.</p>
+                <span class="date  rot">2022.06.15</span>
+              </div>
+            </div>
+            <div class="over">
+            </div>
+          </a>
+        </li>
+        <li>
+          <a href="javascript:;">
+            <div class="imgs tb bg pic" style="background-image: url('https://yujiseon.github.io/training/test4.png')">
+              <img src="https://yujiseon.github.io/training/test4.png">
+              <div class="item_info">
+                <p class="tit">셀피아티비 테스트 중입니다.</p>
+                <span class="date  rot">2022.06.15</span>
+              </div>
+            </div>
+            <div class="over">
+            </div>
+          </a>
+        </li>
+      </ul>
+    </article>
+
+      <article>
         <ul class="list1 clearfix">
           <li>
             <a href="javascript:;">
@@ -187,76 +392,76 @@
       <article>
         <ul class="list2 clearfix">
           <li>
-		<div class="pic_wrap" style="background-image:url('https://yujiseon.github.io/training/test4.png')">
-			<a href="javascript:;">
-				<span>01</span>
-				<div class="shd tb">
-					<div class="tbc">
-						<b>Ocean observation laboratory1</b>
-					</div>
-				</div>
-			</a>
-		</div>
-	  </li>
+						<div class="pic_wrap" style="background-image:url('https://yujiseon.github.io/training/test4.png')">
+							<a href="javascript:;">
+								<span>01</span>
+								<div class="shd tb">
+									<div class="tbc">
+										<b>Ocean observation laboratory1</b>
+									</div>
+								</div>
+							</a>
+						</div>
+					</li>
           <li>
-		<div class="pic_wrap" style="background-image:url('https://yujiseon.github.io/training/test4.png')">
-			<a href="javascript:;">
-				<span>01</span>
-				<div class="shd tb">
-					<div class="tbc">
-						<b>Ocean observation laboratory2</b>
-					</div>
-				</div>
-			</a>
-		</div>
+						<div class="pic_wrap" style="background-image:url('https://yujiseon.github.io/training/test4.png')">
+							<a href="javascript:;">
+								<span>01</span>
+								<div class="shd tb">
+									<div class="tbc">
+										<b>Ocean observation laboratory2</b>
+									</div>
+								</div>
+							</a>
+						</div>
           </li>
           <li>
-		<div class="pic_wrap" style="background-image:url('https://yujiseon.github.io/training/test4.png')">
-			<a href="javascript:;">
-				<span>01</span>
-				<div class="shd tb">
-					<div class="tbc">
-						<b>Ocean observation laboratory3</b>
-					</div>
-				</div>
-			</a>
-		</div>
+						<div class="pic_wrap" style="background-image:url('https://yujiseon.github.io/training/test4.png')">
+							<a href="javascript:;">
+								<span>01</span>
+								<div class="shd tb">
+									<div class="tbc">
+										<b>Ocean observation laboratory3</b>
+									</div>
+								</div>
+							</a>
+						</div>
           </li>
           <li>
-		<div class="pic_wrap" style="background-image:url('https://yujiseon.github.io/training/test4.png')">
-			<a href="javascript:;">
-				<span>01</span>
-				<div class="shd tb">
-					<div class="tbc">
-						<b>Ocean observation laboratory4</b>
-					</div>
-				</div>
-			</a>
-		</div>
+						<div class="pic_wrap" style="background-image:url('https://yujiseon.github.io/training/test4.png')">
+							<a href="javascript:;">
+								<span>01</span>
+								<div class="shd tb">
+									<div class="tbc">
+										<b>Ocean observation laboratory4</b>
+									</div>
+								</div>
+							</a>
+						</div>
           </li>
           <li>
-		<div class="pic_wrap" style="background-image:url('https://yujiseon.github.io/training/test4.png')">
-			<a href="javascript:;">
-				<span>01</span>
-				<div class="shd tb">
-					<div class="tbc">
-						<b>Ocean observation laboratory5</b>
-					</div>
-				</div>
-			</a>
-		</div>
+						<div class="pic_wrap" style="background-image:url('https://yujiseon.github.io/training/test4.png')">
+							<a href="javascript:;">
+								<span>01</span>
+								<div class="shd tb">
+									<div class="tbc">
+										<b>Ocean observation laboratory5</b>
+									</div>
+								</div>
+							</a>
+						</div>
           </li>
           <li>
-		<div class="pic_wrap" style="background-image:url('https://yujiseon.github.io/training/test4.png')">
-			<a href="javascript:;">
-				<span>01</span>
-				<div class="shd tb">
-					<div class="tbc">
-						<b>Ocean observation laboratory6</b>
-					</div>
-				</div>
-			</a>
-		</div>
+						<div class="pic_wrap" style="background-image:url('https://yujiseon.github.io/training/test4.png')">
+							<a href="javascript:;">
+								<span>01</span>
+								<div class="shd tb">
+									<div class="tbc">
+										<b>Ocean observation laboratory6</b>
+									</div>
+								</div>
+							</a>
+						</div>
           </li>
         </ul>
       </article>
@@ -273,7 +478,7 @@
                 <span>123456@naver.com</span>
               </div>
             </a>
-	  </li>
+					</li>
           <li>
             <a href="javascript:;">
               <div class="pic" style="background-image:url('https://yujiseon.github.io/training/test5.png')">
@@ -331,6 +536,65 @@
           </li>
         </ul>
       </article>     
+
+      <article>
+        <ul class="list4 clearfix">
+          <li>
+            <a href="javascript:;">
+              <div class="pic" style="background-image:url('https://yujiseon.github.io/training/test5.png')">
+                <img src="https://yujiseon.github.io/training/test5.png">
+              </div>
+                <b>GilDong, Hong</b>
+                <span>123456@naver.com</span>
+            </a>
+					</li>
+          <li>
+            <a href="javascript:;">
+              <div class="pic" style="background-image:url('https://yujiseon.github.io/training/test5.png')">
+                <img src="https://yujiseon.github.io/training/test5.png">
+              </div>
+                <b>GilDong, Hong</b>
+                <span>123456@naver.com</span>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:;">
+              <div class="pic" style="background-image:url('https://yujiseon.github.io/training/test5.png')">
+                <img src="https://yujiseon.github.io/training/test5.png">
+              </div>
+                <b>GilDong, Hong</b>
+                <span>123456@naver.com</span>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:;">
+              <div class="pic" style="background-image:url('https://yujiseon.github.io/training/test5.png')">
+                <img src="https://yujiseon.github.io/training/test5.png">
+              </div>
+                <b>GilDong, Hong</b>
+                <span>123456@naver.com</span>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:;">
+              <div class="pic" style="background-image:url('https://yujiseon.github.io/training/test5.png')">
+                <img src="https://yujiseon.github.io/training/test5.png">
+              </div>
+                <b>GilDong, Hong</b>
+                <span>123456@naver.com</span>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:;">
+              <div class="pic" style="background-image:url('https://yujiseon.github.io/training/test5.png')">
+                <img src="https://yujiseon.github.io/training/test5.png">
+              </div>
+                <b>GilDong, Hong</b>
+                <span>123456@naver.com</span>
+            </a>
+          </li>
+        </ul>
+      </article>  
 
       <article>
         <ul class="imglist_ul">
