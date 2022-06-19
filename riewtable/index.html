@@ -372,8 +372,13 @@
           
         } else {
 
+          console.log("111111111111");
           $('.riew_tit').removeClass("on");
-          $('.riew_detail').hide();         
+          //$('.riew_detail').hide();         
+
+          $('.txt').stop().slideUp(400, function(){
+            //$('.riew_detail').stop().hide();
+          });  
           
           
           $(this).addClass("on");
