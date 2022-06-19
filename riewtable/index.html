@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; }
+        li { list-style : none; }
+        article { width: 100%;max-width: 1400px; margin: 150px auto; padding: 50px 0; background: #000;}
+
+        .clear::after {display: block; content: ''; clear:both;}
+        .tb { display: table;  width: 100%; height: 100%;}
+        .tbc { display: table-cell; width: 100%; height: 100%; vertical-align: middle; }
+        .dpb { display: block;}
+        .pic { background-size: cover; background-position: center center; background-repeat: no-repeat;}
+        .pic img { width: 100%; max-width: 100%; height: auto; opacity: 0; visibility: hidden;}
+        a {text-decoration: none; color: #222}
+        .bg {background-size: cover; background-position: center center; background-repeat: no-repeat;}
+
+        /*******************************************/
+        section {
+          width: 100%;
+          max-width: 1400px;
+          margin: 0 auto;
+          /*   border: 1px solid red; */
+        }
+
+        .mt9_5 {
+            margin-top: 95px !important;
+        }
+
+        .cont_box .info_tit {
+            border-bottom: 2px solid #164194;
+            padding-bottom: 18px;
+        }
+        .fon8 {
+            font-size: 2.2rem;
+            line-height: 22px;
+            letter-spacing: -0.5px;
+        }
+
+        .fon1_8 {
+            font-size: 1.5rem;
+            line-height: 28px;
+            letter-spacing: -0.5px;
+        }
+
+        .color_b {
+            color: #164194;
+        }
+        .fw500 {
+            font-weight: 500 !important;
+        }
+        .bbs {
+            position: relative;
+            width: 100%;
+            clear: both;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        caption {
+            display: none;
+        }
+
+        .bbs .list thead {
+            border-top: 2px solid #333;
+            border-bottom: 1px solid #adadad;
+        }
+
+        .bbs .list thead th {
+            padding: 15px 10px;
+            font-size: 1.5rem;
+            color: #333;
+        }
+
+        .bbs .list tbody tr:last-child {
+            border-bottom: 1px solid #adadad;
+        }
+
+        .bbs .list td {
+            text-align: center;
+            padding: 15px 10px;
+            line-height: 1.4;
+        }
+
+        .txt_l {
+            text-align: left !important;
+        }
+
+        .riew_tit {
+          cursor:pointer;
+          position: relative;
+        }
+
+        .riew_detail {
+          background: #f9f9f9;
+          display: none;
+          text-align: left;
+          height: auto;
+        }
+
+        .riew_detail td {
+          height: auto;          
+          padding: 0px !important;
+        }
+     
+        .riew_detail td p {
+          display: none;
+          text-align: left;
+          padding: 20px 30px;
+          color: #333;        
+        }
+    
+      input[type="checkbox"] {
+          display: inline-block;
+          position: absolute;
+          left: -9999px;
+          opacity: 0;
+          visibility: hidden;
+          width: 1px;
+          height: 1px;
+          filter: alpha(opacity=0);
+          -ms-filter: alpha(opacity=0);
+          overflow: hidden;
+      }
+
+      input[type="checkbox"] + label {
+          display: inline-block;
+          padding-left: 30px;
+          color: #777;
+          cursor: pointer;
+          position: relative;
+          line-height: 24px;
+          font-size: 1.4rem;
+          font-weight: 400;
+      }
+
+      input[type="checkbox"] + label:before {
+          position: absolute;
+          left: 0;
+          top: 50%;
+          width: 20px;
+          height: 20px;
+          box-sizing: border-box;
+          margin-top: -9px;
+          border-radius: 2px !important;
+          border: 1px solid #ccc;
+          line-height: 20px;
+          text-align: center;
+          clear: both;
+          content: '';
+          display: block;
+          background-repeat: no-repeat;
+          background-size: auto;
+          background-position: center center;
+      }
+      #cont_box3 .info_tit, #cont_box4 .info_tit { border-bottom: none; padding-bottom: 18px; }
+      #cont_box3 .bbs .list thead, #cont_box4 .bbs .list thead  {border-top: 2px solid #164194;}
+      #cont_box4 .info_tit { box-sizing: border-box;}
+      #cont_box4 .info_tit > p { float: left;}
+      #cont_box4 .info_tit > p:first-child { margin-right: 30px;}
+      #cont_box4 .info_tit > span { float: right;}
+
+      #cont_box4 .info_tit > p > span { color : #333 }
+
+      /*
+      .riew_tit.on::after {
+          width: 100%;
+          height: 75px;
+          content: '';
+          position: absolute;
+          left: 0;
+          top: 0;
+          z-index: 0;
+      }
+      */
+      
+
+    </style>
+    <style>
+
+.star-ratings {
+  color: #aaa9a9; 
+  position: relative;
+  unicode-bidi: bidi-override;
+  width: max-content;
+  -webkit-text-fill-color: transparent; /* Will override color (regardless of order) */
+  -webkit-text-stroke-width: 1.3px;
+  -webkit-text-stroke-color: #2b2a29;
+}
+ 
+.star-ratings-fill {
+  color: #fff58c;
+  padding: 0;
+  position: absolute;
+  z-index: 1;
+  display: flex;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  -webkit-text-fill-color: gold;
+}
+ 
+.star-ratings-base {
+  z-index: 0;
+  padding: 0;
+}
+
+    </style>
+</head>
+
+
+<body>
+
+  <section>
+    <div class="cont_box mt9_5" id="cont_box4">
+      <div class="info_tit color_b fw500 clear">
+        <p class="fon8">수강후기</p>
+        <p class="fon1_8">
+          <span>총 2개</span>
+          <span>
+            <input type="hidden" name="st" id="st" value="4" class="rating">
+            <span></span>
+          </span>
+          <span>4.5점</span>
+        </p>
+        <span class="fw300">
+          <input type="checkbox" name="myview" id="myview" value="0"><label for="myview">내 수강후기</label>
+        </span>
+      </div>
+      <!-- 여기서부터 게시판--->
+      <div class="bbs">
+        <table class="list">
+          <caption>수강 후기</caption>
+          <colgroup>
+            <col width="80px" />
+            <col width="80px*" />
+            <col width="" />
+            <col width="100px" />
+            <col width="100px" />
+            <col width="100px" />
+          </colgroup>
+          <thead>
+            <tr>
+              <th>NO</th>
+              <th>평점</th>					
+              <th>제목</th>										 
+              <th>작성자</th>
+              <th>등록일</th>
+              <th>조회수</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="riew_tit" data-type="riew0" >
+              <td class="no">1</td>
+              <td class="stars">
+                <input type="hidden" name="st1" id="st1" value="4.5" class="rating">
+                <span></span>
+              </td>
+              <td class="txt_l title"><div>안녕하세요.</div></td>
+              <td class="name">홍길동</td>		
+              <td class="date">2022-06-19</td>
+              <td class="hit">21</td>
+            </tr>
+            <tr id="riew0" class="riew_detail">
+              <td colspan="6">
+                <p class="txt">Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci iure debitis nostrum numquam recusandae aliquam, eligendi dolor voluptatibus dignissimos a delectus animi quaerat, sit possimus dicta soluta assumenda consequuntur odio.</p>
+              </td>
+            </tr>
+            <tr class="riew_tit" data-type="riew1" >
+              <td class="no">2</td>
+              <td class="stars">
+                <input type="hidden" name="st2" id="st2" value="4" class="rating">
+                <span></span>
+              </td>
+              <td class="txt_l title"><div>안녕하세요2</div></td>
+              <td class="name">김철수</td>		
+              <td class="date">2022-06-23</td>
+              <td class="hit">100</td>
+            </tr>
+            <tr id="riew1" class="riew_detail">
+              <td colspan="6">
+                <p class="txt">Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci iure debitis nostrum numquam recusandae aliquam, eligendi dolor voluptatibus dignissimos a delectus animi quaerat, sit possimus dicta soluta assumenda consequuntur odio.</p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <!-- //여기까지 게시판---> 
+    </div>   
+  </section>
+<!--
+  <section>
+    <div class="star-ratings">
+      <div 
+        class="star-ratings-fill space-x-2 text-lg"
+        :style="{ width: ratingToPercent + '%' }"
+      >
+        <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+      </div>
+      <div class="star-ratings-base space-x-2 text-lg">
+        <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+      </div>
+    </div>
+  </section>
+
+  <script>
+
+  function ratingToPercent() {
+        const score = +this.restaurant.averageScore * 20;
+        return score + 1.5;
+  }
+  
+  </script>
+-->
+
+  <script>
+
+    $(function(){
+      
+      var len = $('input[type="hidden"].rating').length;
+      var last = 5;
+      //var num = $('.stars').find('.score').val();
+      console.log(len);
+
+      $('input[type="hidden"].rating').each(function(index){
+        var num =$(this).val();
+        //var is_half = (num % 1) == 0 ? false : true;
+        var tag = '';
+
+        console.log(num);
+        //console.log(is_half);
+
+        for(x=0;x<last;x++) {   // 0 1 2 3 4
+          if(x <num) {  // 4.5, 4  0, 1, 2 3
+            console.log(x)
+            tag += '<span>●<span>';            
+          } else {
+            console.log(x)
+            tag += '<span>○<span>';
+            
+            /*
+            if(is_half) {
+              tag += '<span>◐<span>';
+            } else {
+              tag += '<span>○<span>';
+            }
+            */
+          }
+        }
+
+        $(this).next('span').append(tag);
+      })
+    
+      $('.riew_tit').on("click", function(){
+        var target = $(this).data("type");
+        
+        if( $(this).hasClass("on") ) {
+          $(this).removeClass("on");
+          //$("#" +target).stop().slideUp(400);
+          
+          $("#" +target).find('.txt').stop().slideUp(400, function(){
+            $("#" +target).stop().hide();
+          });
+          
+        } else {
+
+          $('.riew_tit').removeClass("on");
+          $('.riew_detail').hide();         
+          
+          
+          $(this).addClass("on");
+          $("#" +target).stop().show();
+          $("#" +target).find('.txt').stop().slideDown(400);
+          /*
+          $("#" +target).stop().css({"display" : "table-row"});
+          var height_ = $("#" +target).children('td').height();
+          console.log(height_);
+          $("#" +target).stop().animate({
+            height : height_ + "px"
+          })
+          */
+
+        }
+      
+      })    
+
+    })
+    
+    </script>
+</body>
+</html>
