@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            text-size-adjust:none;
+            -webkit-text-size-adjust:none;
+            -moz-text-size-adjust:none;
+            -o-text-size-adjust:none;
+        }
+
+        html, body{
+            height:100%;
+            font-size-adjust:none; 
+            -webkit-font-size-adjust:none;
+            -o-font-size-adjust:none;
+            -moz-font-size-adjust:none;
+        }
+        html{font-size: 62.5%;} /*기본폰트 10px*/
+        body,th,td,input,select,textarea,button {
+            font-size:1.5rem;
+            line-height:1.6;
+            font-family:'Roboto', 'Noto Sans KR', sans-serif; 
+            color:#707070;
+            word-break:keep-all; word-wrap:break-word;
+        }
+
+        ::-webkit-input-placeholder {
+        color:#bcbcbc;
+        }
+        :-moz-placeholder {
+        color:#bcbcbc;
+        }
+        ::-moz-placeholder{
+        color:#bcbcbc;
+        }
+        :-ms-input-placeholder {
+        color:#bcbcbc;
+        }
+
+        caption {
+            display:none;
+        }
+
+        body, div, 
+        dl, dt, dd, ul, ol, li, 
+        h1, h2, h3, h4, h5, h6, 
+        pre, code, form, fieldset, legend, textarea, p, blockquote,
+        th, td, input, select, textarea, button,
+        header, nav, menu, section, article {
+        margin:0;
+        padding:0
+        }
+        fieldset, img {
+        border:0 none
+        }
+        dl, ul, ol, menu, li {
+        list-style:none; 
+        vertical-align: middle
+        }
+        blockquote, q {
+        quotes: none
+        }
+        blockquote:before, blockquote:after,q:before, q:after {
+        content:''; content:none;
+        }
+        input, textarea {
+        padding:0 5px;
+        }
+        input:-webkit-autofill {
+        -webkit-box-shadow: 0 0 0 1000px white inset; /* 크롭입력배경색제거 */
+        }
+        input, select, textarea, button {
+        vertical-align:middle;
+        }
+        input[type='text'],input[type='password'],input[type='submit'],input[type='search'] {
+        -webkit-appearance:none; 
+        }
+        input[type='text']::placeholder,input[type='password']::placeholder,input[type='submit']::placeholder,input[type='search']::placeholder {
+        font-size: 14px;
+        color: #a7a7a7;
+        }
+        button,input[type='button'],input[type='submit'],input[type='reset'],input[type='file'] {
+        -webkit-appearance:none; 
+        border-radius:0;
+        border:none;
+        }
+        input[type='button'] {
+        -webkit-appearance:none;
+        border: 0;
+        }
+        input[type='search']:-webkit-search-cancel-button {
+        -webkit-appearance:none
+        }
+        input[type='radio'], input[type='checkbox'] {
+        border:none;
+        }
+        button {
+        border:none;
+        background-color:transparent;
+        cursor:pointer;
+        }
+
+        a, a:link, a:visited, a:hover, a:active {
+        color:inherit; 
+        text-decoration: none;
+        }
+        address,caption,cite,code,dfn,em,var {
+        font-style:normal;
+        font-weight:normal
+        }
+        table {
+        width:100%; 
+        border-collapse: collapse;
+        }
+        img { 
+        vertical-align:middle;
+        max-width:100%;
+        }
+        legend, caption{display:none;}
+
+        /**************************/
+        
+        .tit_area { width: 100%; max-width: 900px; margin: 0 auto; }
+        .mt7 {margin-top : 70px;}
+        .tit_area ul.list1 { box-shadow: 5px 5px 20px 0 rgb(0 0 0 / 15%); border-radius: 10px }
+        .tit_area ul li { float: left; width: 33.333%; max-width: 300px; text-align: center;  }
+        .tit_area ul li > div { width: 313px; position: relative; }
+        
+        .tit_area ul.list1 li.li1, .tit_area ul.list1 li.li1 a { z-index: 30;}
+        .tit_area ul.list1 li.li2, .tit_area ul.list1 li.li2 a { z-index: 20; }
+        .tit_area ul.list1 li.li3, .tit_area ul.list1 li.li3 a { z-index: 10; }
+
+        /* .tit_area ul.list1 li.li1 a:before { z-index: 29;}
+        .tit_area ul.list1 li.li2 a:before { z-index: 19; }
+        .tit_area ul.list1 li.li3 a:before { z-index: 9; }        */
+
+        .tit_area ul.list1 li.li1 a i.mask { z-index: 31;}
+        .tit_area ul.list1 li.li2 a i.mask { z-index: 21; }
+
+        .tit_area ul.list1 li a { display: block; width: 95.846%; max-width: 300px; height: 60px; line-height: 60px; background: #fff;  box-shadow: 5px 5px 20px 0 rgb(0 0 0 / 15%);  position: relative; }
+        .tit_area ul.list1 li a i.mask { display: block;  position: absolute;   top: 50%;    right: -8.5px;  margin-top: -8.5px;  width: 17px;  height: 17px; background: #fff; -ms-transform: rotate(45deg); transform: rotate(45deg);box-sizing: border-box;}
+        /* .tit_area ul.list1 li > div:before {  position: absolute;   top: 50%;    right: -9px;  margin-top: -8.5px;  content: ''; display: block;  width: 17px;  height: 17px;  background: #fff; box-shadow: 5px 5px 20px 0 rgb(0 0 0 / 12%); -ms-transform: rotate(45deg); transform: rotate(45deg);box-sizing: border-box;  }
+         .tit_area ul.list1 li a.on:before {  background: #164194 }
+       .tit_area ul.list1 li:last-child a:before { content: none }   */
+
+        .tit_area ul.list1 li.li1 a { border-top-left-radius: 10px; border-bottom-left-radius: 10px; } 
+        .tit_area ul.list1 li.li3 a { border-top-right-radius: 10px; border-bottom-right-radius: 10px; }
+        .tit_area ul.list1 li a span {  font-size: 1.6rem;  letter-spacing: -0.5px; color:  rgba(51, 51, 51, 0.5); padding-left: 30px; position: relative  }
+
+        .tit_area ul.list1 li a span:before { content: ''; display: block; clear: both; position: absolute; left: 0; top: -81%; }
+        .tit_area ul.list1 li.li1 a span:before { content: url(/img/icon_cart1.png); }
+        .tit_area ul.list1 li.li2 a span:before { content: url(/img/icon_cart2.png); }
+        .tit_area ul.list1 li.li3 a span:before { content: url(/img/icon_cart3.png); }
+
+        .tit_area ul.list1 li a.on { background: #164194; box-shadow: 5px 5px 20px 0 rgb(0 0 0 / 40%);  }
+        .tit_area ul.list1 li a.on span { color: #fff; }
+        .tit_area ul.list1 li a.on i.mask { background: #164194} 
+        .tit_area ul.list1 li.li1 a.on span:before { content: url(/img/icon_cart1_on.png); }
+        .tit_area ul.list1 li.li2 a.on span:before { content: url(/img/icon_cart2_on.png); }
+        .tit_area ul.list1 li.li3 a.on span:before { content: url(/img/icon_cart3_on.png); }
+    </style>
+</head>
+<body>
+    <div class="tit_area mt7">					
+        <ul class="clear list1 list4 fw700">
+            <li class="li1">
+                <div>
+                    <a href="javascript:;" >
+                        <span>장바구니</span>
+                        <i class="mask"></i>
+                    </a>
+                </div>
+            </li>
+            <li class="li2 ">
+                <div>
+                    <a href="javascript:;" >
+                        <span>결제하기</span>
+                        <i class="mask"></i>
+                    </a>
+                </div>
+            </li>
+            <li class="li3 on">
+                <a href="javascript:;" class="on">
+                    <span>결제완료</span>
+                </a>
+            </li>
+        </ul>	
+
+    </div>
+</body>
+</html>
