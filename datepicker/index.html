@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+    <style>
+        .calendar_wrap {
+            max-width: 350px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .calendar {  float: left; position: relative; display: inline-block;  height: 100%;  width: 45.714%;  max-width: 160px;   margin: 0px;}
+        .calendar:before { content: url('icon_calendar.png'); display: block; clear: both; position: absolute;right: 10px;top: 50%;  margin-top: -7.5px;  }
+        .calendar input[type="text"] {  font-size: 15px;  color: #333;  padding: 0 12px; border: 1px solid #b3b3b3; box-sizing: border-box; height: 40px;width: 100%;float: left;  width: 100%;	}
+        span.cen {   float: left;  display: block; width: 30px; text-align: center;; color: #333; font-size: 1.5rem; font-weight: 400;   line-height: 35px;   letter-spacing: -0.5px;  }
+
+    </style>
+    <script>
+        $(function(){
+            $( "#datepicker1" ).datepicker({
+                dateFormat: "yy-mm-dd"
+            });
+            $( "#datepicker2" ).datepicker({
+                dateFormat: "yy-mm-dd"
+            });
+
+        });    
+    </script>
+</head>
+<body>
+    <section>
+        <div class="calendar_wrap clear">
+            <p class="calendar">
+                <input type="text" name="sstartdate" id="datepicker1" readonly="" autocomplete="off" class="date br4">
+            </p>
+            <span class="cen">~</span>
+            <p class="calendar">
+                <input type="text" name="senddate" id="datepicker2" readonly="" autocomplete="off" class="date br4">
+            </p>
+        </div>
+    </section>
+</body>
+</html>
