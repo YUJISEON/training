@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    section {
+        width: 100%;
+        max-width: 1280px;
+        height: auto;
+        margin: 0 auto;
+        padding: 0 40px;
+        box-sizing: border-box;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    thead {
+        background: #f8f8f8;
+        border-top: 0;
+        border-top: 1px solid #333;
+        border-bottom: 1px solid #adadad;
+    }
+
+    table thead th {
+        text-align: Center;
+        border-left: 1px solid #ebebeb;
+        box-sizing: border-box;
+    }
+
+    .list tbody tr {
+        border-bottom: 1px solid #e1e1e1;
+    }
+
+     table tbody td {
+        text-align: Center;
+        border-left: 1px solid #ebebeb;
+        box-sizing: border-box;
+    }
+
+    table tbody td span.mov {
+        font-size: 1.5rem;
+        color: #000;
+        font-weight: 400;
+        display: none;
+        padding-bottom: 5px;
+    }
+
+    @media screen and (max-width: 768px) {
+
+        .list tbody tr {
+            padding: 10px 0;
+            width: 100%;
+            display: block;
+            text-align: left;
+            vertical-align: middle;
+            border-bottom: 1px solid #d9d9d9;
+        }
+
+        table thead th {
+            display: none;
+        }
+
+        .list tbody td {
+            width: 100%;
+            display: block;
+            text-align: left;
+            padding: 0 0;
+            border-bottom: none;
+            position: relative;
+        }
+
+        table tbody td:first-child{border-top:0;width:100%}
+        table tbody tr{padding: 0 10px;box-sizing:Border-box}
+
+        table tbody td span.mov {
+            display: block;
+        }
+    }
+
+    @media screen and (max-width: 540px) {
+        .list colgroup {
+            display: none;
+        }
+
+        .list tbody tr {
+            display:inline;
+            font-size:0;/* kind of erase white-space */
+        }
+
+        /* .list tbody tr::after {
+            content: '';
+            display: block;
+            clear: both;
+        } */
+
+        .list tbody td {
+            width:50%;
+            display:inline-block;
+            margin:0;
+            padding:0;
+            font-size:1rem/* reset font-size*/;
+            
+        }
+
+        .list tbody td:first-child {
+            width: 100%;
+        }
+
+    }
+    </style>
+</head>
+<body>
+    <section>
+        <table class="list">
+            <caption>게시판 목록</caption>
+            <colgroup>
+                <col width="5%">
+                <col width="7.5%">
+                <col width="7.5%">
+                <col width="7.5%">
+                <col width="11%">
+                <col width="10%">
+                <col width="11%">
+                <col width="6%">
+                <col width="9%">
+                <col width="10%">
+                <col width="6%">
+                <col width="10.5%">
+            </colgroup>
+            <thead>
+                <tr>
+                    <th>
+                        <p class="chk_wrap">
+                            <input type="checkbox" name="" id="chk_all">
+                            <label for="chk_all">전체선택</label>
+                        </p>
+                    </th>
+                    <th>항목1</th>
+                    <th>항목2</th>
+                    <th>항목3</th>
+                    <th>항목4</th>
+                    <th>항목5</th>
+                    <th>항목6</th>
+                    <th>항목7</th>
+                    <th>항목8</th>
+                    <th>항목9</th>
+                    <th>항목10</th>
+                    <th>항목11</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="chk">
+                        <p class="chk_wrap">
+                            <input type="checkbox" name="gno[]" value="30" id="chk0" data-no="30" data-cpkey="" data-certflag="0" class="certview">
+                            <label for="chk0"></label>
+                        </p>
+                    </td>
+                    <td class="txt nbs"><span class="mov">항목2</span>내용2</td>
+                    <td class="txt"><span class="mov">항목3</span>내용3</td>
+                    <td class="txt"><span class="mov">항목4</span>내용4</td>
+                    <td class="txt"><span class="mov">항목5</span>내용5</td>
+                    <td class="txt"><span class="mov">항목6</span>내용6</td>
+                    <td class="txt"><span class="mov">항목7</span>내용7</td>
+                    <td class="txt"><span class="mov">항목8</span>내용8</td>
+                    <td class="txt"><span class="mov">항목9</span>내용9</td>
+                    <td class="cate rd"><span class="mov">항목10</span>내용10</td>
+                    <td class="txt"><span class="mov">항목11</span>내용11</td>
+                    <td class="">
+                    </td>
+                </tr>                
+            </tbody>
+        </table>
+    </section>
+</body>
+</html>
+
+<!-- 
+    https://stackoverflow.com/questions/28953689/any-way-to-get-tr-to-float-for-a-responsive-table-layout
+-->
