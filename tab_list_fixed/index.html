@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="commom.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+    <style>
+        
+        #header {
+        position: fixed;
+        left: 0;
+        width: 100%;
+        height: 80px;
+        top: 0;
+        border-bottom: 1px solid rgba(255,255,255,.1);
+        box-sizing: border-box;
+        z-index: 1010;
+        transition: all .5s;
+        -webkit-transition: all .5s;
+        background-color: lightgreen;
+        }
+        #sub .sub_visual  { height: 360px; text-align: Center; background-color: pink;}   
+
+        #sub .con_wrap{min-height:600px}
+        #sub .b_title{padding:100px 0 40px}
+        #sub .b_title b{line-height:1;display:block;color:#333; font-size:3.4rem;font-weight:900;}
+        #sub .b_title p{margin-top:14px;font-size:2.2rem;font-weight:100; line-height:1.2; letter-spacing:-.075em; color:#333}
+        #sub .s_title{background-position:0 10px; background-repeat:no-repeat;background-image:url('/img/sub_title_bg.png');background-size:auto;padding-top:30px;padding-bottom:40px}
+        /*#sub .gryBg .s_title{background-image:url('/img/sub_title_bg_gr.png')}*/
+        #sub .s_title b{color:#333; font-weight:700;line-height:1; display:inline-block; box-sizing:border-box; font-size:2.6rem;padding-left:30px ;position:relative;}
+        #sub .s_title b:before{width:20px;height:3px;background:#cc0d19; content:'';position:absolute;left:0; margin-top:-1.5px; top:50%;}
+        .tab_list{padding-bottom:50px}
+        .tab_list ul{width:102%;margin-left: -2%;text-align: center;}
+        .tab_list ul li{width:48%;margin-left:2%;float: left; }
+        .tab_list ul li a{display: block;color:#333;line-height: 70px;font-size: 1.6rem;border:1px solid #333;font-weight: 400;;}
+        .tab_list ul li.on a{color:#fff;border-color: transparent;background: linear-gradient(179deg, rgba(207,13,25,1) 0%, rgba(129,7,15,1) 100%);}
+        .tab_list ul li.on{box-shadow: 6px 10px 35px 0px rgba(0, 0, 0, 0.36);}
+
+        #sub .con_wrap{padding-bottom:80px}
+        #sub.dna_idx .con_wrap{padding-bottom:0}
+
+        #sub .tab_fake { height: 142px; display: none; width: 100%; max-width: 1280px; margin: 0 auto; padding: 0 40px; background-color: #333; box-sizing: border-box;}
+        #sub .tab_fake.on { display: block;}
+
+        #sub.dna_idx .con_box{}
+        #sub.dna_idx .con_box > div{padding:50px 0 60px;}
+        #sub.dna_idx .con_box > div.gryBg{padding:45px 0 55px;}
+        #sub.dna_idx .con_box > div.con1{padding-top:0;}
+        #sub.dna_idx .con_box .p_wrap{margin-top:20px;}
+        #sub.dna_idx .con_box .p_wrap:first-child{background:#333}
+        #sub.dna_idx .con_box .p_wrap p{color:#666;font-size:1.6rem;font-weight:300;line-height:1.5}
+        #sub.dna_idx .con_box .ul_wrap{margin-top:30px}
+        #sub.dna_idx .con_box .ul_wrap ul{width:calc(100% + 60px);margin-left:-60px;}
+        #sub.dna_idx .con_box .ul_wrap ul li {width:calc(33.333% - 60px);margin-left:60px; float:left;border-bottom:1px solid #ecebeb;}
+        #sub.dna_idx .con_box .ul_wrap ul li .img{padding:30px 30px;box-sizing:border-box;background:#f8f8f8;position:relative}
+        #sub.dna_idx .con_box .ul_wrap ul li .img img{max-width:298px;}
+        #sub.dna_idx .con_box .ul_wrap ul li .img:before{width:26px;height:24px;left:-44px;margin-top:-12px; top:50%; content:''; position:absolute;background-image:url('/img/arrow_bf.png');background-repeat:no-repeat;background-position:center center;background-size:auto}
+        #sub.dna_idx .con_box .ul_wrap ul li:first-child .img:before{display:none}
+        #sub.dna_idx .con_box .ul_wrap ul li.nobf .img:before{display:none}
+        #sub.dna_idx .con_box .ul_wrap ul li span{display:block;padding:20px 0 25px;text-align:center;line-height:1;color:#333; font-size:1.5rem;font-weight:500; }
+        #sub.dna_idx .con_box .ul_wrap2{}
+        #sub.dna_idx .con_box .ul_wrap2 ul{margin-left:-12px; width:calc(100% + 12px)}
+        #sub.dna_idx .con_box .ul_wrap2 ul li{float:left; height:326px;width:calc(25% - 12px);margin-left:12px; text-align:center;background-position:center center ;background-repeat:no-repeat;background-size:cover}
+        #sub.dna_idx .con_box .ul_wrap2 ul li span{display:Block;color:#fff; font-weight:500; line-height:30px; letter-spacing:-.03em; font-size:2.1rem;}
+        #sub.dna_idx .con_box .img_wrap{text-align:center;background:#f8f8f8;padding:30px 20px;box-sizing:border-box;}
+        #sub.dna_idx .con_box .gryBg .img_wrap{background:#fff}
+        #sub.dna_idx .con_box .img_wrap {margin-top:30px}
+        #sub.dna_idx .con_box .img_wrap .img {}
+        #sub.dna_idx .con_box .img_wrap .img .mov{display:none}
+        #sub.dna_idx .con_box .step_cont{padding:40px 0 80px}
+        #sub.dna_idx .con_box .step_cont .step_list{}
+        #sub.dna_idx .con_box .step_cont .step_list ul{width:calc(100% + 14px);margin-left:-14px;}
+        #sub.dna_idx .con_box .step_cont .step_list ul li{margin-top:50px;width:calc(25% - 14px);margin-left:14px;float:left;box-sizing:border-box;padding:50px 30px;min-height:270px;padding-bottom:0;box-shadow: 6px 10px 35px 0px rgba(0, 0, 0, 0.13);background:#fff;position:relative}
+        #sub.dna_idx .con_box .step_cont .step_list ul li .t_ico{background:#e52d39;width:54px;height:54px;border-radius:27px; background-size:auto;background-position:center center;background-repeat:no-repeat;position:absolute; left:30px;top:-28px}
+        #sub.dna_idx .con_box .step_cont .step_list ul li .txt > a{width:100%; margin-top:18px; max-width:125px;line-height:40px;text-align:center; border:1px solid #100509;border-radius:10px;font-size:1.2rem;font-weight:500;color:#100509; display:block}
+        #sub.dna_idx .con_box .step_cont .step_list ul li .b_wrap{}
+        #sub.dna_idx .con_box .step_cont .step_list ul li .b_wrap b{font-size:2rem;font-weight:900; color:#333; line-height:1; display:inline-block;vertical-align:middle;padding-left:8px;}
+        #sub.dna_idx .con_box .step_cont .step_list ul li .b_wrap b:first-child{font-family: 'Montserrat','Noto Sans KR', sans-serif;padding-left:0}
+        #sub.dna_idx .con_box .step_cont .step_list ul li .p_wrap2{margin-top:28px;}
+        #sub.dna_idx .con_box .step_cont .step_list ul li .p_wrap2 p:first-child{margin-top:0;}
+        #sub.dna_idx .con_box .step_cont .step_list ul li .p_wrap2 p{font-size:1.5rem;font-weight:300 ;color:#333; line-height:1.5;padding-left:9px;box-sizing:border-box;position:relative;margin-top:6px}
+        #sub.dna_idx .con_box .step_cont .step_list ul li .p_wrap2 p:before{width:3px;height:3px; top:12px; left:0; content:''; background:#666; border-radius:1.5px;position:absolute}
+        #sub.dna_idx .con_box .step_cont .hv_btns{}
+        #sub.dna_idx .con_box .step_cont .hv_btns a{margin:0 auto ;}
+        #sub.dna_idx.lab_idx .con_box > div{position:relative; z-index:1;}
+        #sub.dna_idx.lab_idx .con_box .ul_wrap2 ul{margin-left:-20px; width:calc(100% + 20px);margin-top:-20px}
+        #sub.dna_idx.lab_idx .con_box .ul_wrap2 ul li{float:left; height:285px;width:calc(25% - 20px);margin-left:20px; margin-top:20px; text-align:center;}
+        #sub.dna_idx.lab_idx .con_box .ul_wrap2 ul li span{display:inline-block; line-height:1; padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,.5);text-transform:uppercase; letter-spacing:0.05em;font-weight:700}
+
+        #sub.history_idx .tab_list{padding-bottom:70px}
+        #sub.history_idx .tab_list ul {width:101%; margin-left:-1%}
+        #sub.history_idx .tab_list ul li{width:32.333%;margin-left:1%}
+
+        #sub.history_idx .tab_list ul li a{color:#666;font-family: 'Montserrat','Noto Sans KR', sans-serif;font-weight:400}
+        #sub.history_idx .tab_list ul li.on a{color:#fff;font-weight:500}
+
+        #sub.history_idx .tab_list.fixed{padding-bottom:0;left: 0; width: 100%;position:fixed;top: 85px; padding: 10px 0; z-index: 100;}
+        #sub.history_idx .tab_list.fixed ul{max-width:500px;background:#fff;margin-left:0}
+        #sub.history_idx .tab_list.fixed ul li a{background:#fff;line-height:45px}
+        #sub.history_idx .tab_list.fixed ul li:first-child{margin-left:0;}
+        #sub.history_idx .tab_list.fixed ul li.on a{ background: linear-gradient(179deg, rgba(207,13,25,1) 0%, rgba(129,7,15,1) 100%);}
+
+        #sub.history_idx .con_box{}
+        #sub.history_idx .con_box .cont{padding:70px 0;}
+        #sub.history_idx .con_box .cont:first-child{padding-top:0}
+
+        #sub.history_idx .hlf_wrap{opacity:.4}
+        #sub.history_idx .con_box .cont.on .hlf_wrap{opacity:1}
+        #sub.history_idx .hlf_wrap:after{clear:both; content:''; display:block}
+        #sub.history_idx .hlf_wrap .years{height:155px; width:155px; background:#bf000c;float:left}
+        #sub.history_idx .hlf_wrap .years .tbc{padding-left:35px;box-sizing:border-box;}
+        #sub.history_idx .hlf_wrap .years .tbc span{font-size:3rem;line-height:1;display:Block; color:#fff;font-weight:700;font-family: 'Montserrat','Noto Sans KR', sans-serif;position:relative}
+        #sub.history_idx .hlf_wrap .years .tbc span:first-child{padding-bottom:20px;}
+        #sub.history_idx .hlf_wrap .years .tbc span:first-child:before{width:8px;height:4px;background:#fff; bottom:10px; left:0;content:''; position:Absolute; }
+        #sub.history_idx .hlf_wrap .year_list{float:left;margin-top:36px;padding-left:90px;box-sizing:border-box;position:relative;}
+        #sub.history_idx .hlf_wrap .year_list:before{width:50px;height:1px;background:#bf000c;top:10px;left:22px;content:''; position:Absolute;}
+        #sub.history_idx .hlf_wrap .year_list .lists {margin-top:45px}
+        #sub.history_idx .hlf_wrap .year_list .lists:first-child{margin-top:0;}
+        #sub.history_idx .hlf_wrap .year_list .lists:after{clear:both; content:''; display:block}
+        #sub.history_idx .hlf_wrap .year_list .lists > b{float:left;width:64px;color:#bf000c; font-size:2rem;line-height:1; font-weight:500;font-family: 'Montserrat','Noto Sans KR', sans-serif;}
+        #sub.history_idx .hlf_wrap .year_list .lists ul{float:left;margin-top:-6px}
+        #sub.history_idx .hlf_wrap .year_list .lists ul li{margin-top:6px;}
+        #sub.history_idx .hlf_wrap .year_list .lists ul li p{color:#666;font-size:1.6rem;font-weight:300; line-height:1.2; padding-left:12px;box-sizing:border-box;position:relative}
+        #sub.history_idx .hlf_wrap .year_list .lists ul li p:before{width:5px;height:5px;content:''; position:Absolute; left:0; top:7px; background:#bf000c;border-radius:2.5px}
+
+        @media screen and (max-width: 1620px){
+            #header .gnb .depth1 > ul > li{width:160px}
+            #main .main_visual .s_btns.swiper-button-prev{left:20px}
+            #main .main_visual .s_btns.swiper-button-next{right:20px}
+            #sub.dna_idx .con_box .ul_wrap ul li .img img{max-width:100%}
+        }
+        @media screen and (max-width: 1500px){
+            #header .gnb .depth1 > ul > li{width:140px}
+            #header .gnb .depth1 > ul > li > div > a{font-size:1.5rem}
+            #header .gnb .depth1 > ul > li.last > div > a span{font-size:1.5rem}
+            #main .main_visual .s_btns{width:50px;height:50px}
+
+        }
+        @media screen and (max-width: 1400px){
+
+        }
+        @media screen and (max-width: 1280px){
+            .size {width:100%; padding:0 20px; box-sizing: border-box;}
+            #header .logo{left:20px}
+
+            #header .gnb .depth1{display:none;}
+            #header .util a.myp:before{display:none}
+
+            #main .main_visual .slide_btns{position: absolute;bottom: 20%;left: 20px;z-index: 20;font-size: 0;}
+            #main .main_visual .s_btns{position:static;display: inline-block;vertical-align: middle;}
+            #main .main_visual .s_btns.swiper-button-next{margin-left:20px}
+            #main .main_visual .tb p{margin-top:30px}
+
+            #main .con1 .l_wrap{width:auto}
+            #sub.dna_idx .con_box .step_cont .step_list ul li{padding:50px 25px;padding-bottom:10px;min-height:300px}
+            #sub.intro .con_box .txt{padding:40px 35px;right:20px}
+            #sub .tb_wrap.tb_wrap2 .search_wrap{padding:20px 40px}
+        }
+        @media screen and (max-width: 1200px){
+            #main .con1 .l_wrap {padding:90px 0 70px}
+            #main .con1 .l_wrap .txt_wrap em.mbr2{display:block}
+            #main .con1 .r_wrap{top:-20px}
+            #sub.intro .con_box .img{}
+            #sub.intro .con_box .img img{display:none}
+            #sub.intro .con_box .img .mov{display:block}
+            #sub.loc_idx .map_wrap .info_wrap{right:60px;bottom:40px;padding:40px}
+            .tb_wrap.tb_wrap2 .search_wrap .search_boxes > div .boxes b{}
+            .tb_wrap.tb_wrap2 .search_wrap .search_boxes > div .boxes:first-child{display:Block;margin-top:0;    width: 100%;    max-width: 800px;}
+            .tb_wrap.tb_wrap2 .search_wrap .search_boxes > div .boxes:first-child > b{width:80px;text-align:right;padding-right:12px}
+            .tb_wrap.tb_wrap2 .search_wrap .search_boxes > div .boxes:first-child > div{width:calc(100% - 80px)}
+            .tb_wrap.tb_wrap2 .search_wrap .search_boxes > div .boxes{width:auto;margin-top:10px}
+            .tb_wrap.tb_wrap2 .search_wrap .search_boxes > div .boxes .select{width:270px;}
+            .tb_wrap.tb_wrap2 .search_wrap .search_boxes input[type='button']{vertical-align:bottom}
+
+                .tb_wrap.tb_wrap2 .search_wrap .search_boxes {  max-width: 707px;}
+
+        }
+        @media screen and (max-width: 1024px){
+            .pc{display: none;}
+            .ta{display:block;}
+            html{font-size: 60%;}
+
+            #sub.dna_idx .con_box .ul_wrap2 ul li span{font-size:1.8rem}
+            #sub.dna_idx .con_box .ul_wrap2 ul li{height:260px}
+            #sub.dna_idx .con_box .step_cont .step_list ul li{width:calc(50% - 14px);min-height:260px}
+            #sub.dna_idx .con_box .p_wrap p em.mbr{display:block}
+        #sub.intro .con_box .img{max-width:480px;position:relative;z-index:-1}
+            #sub.intro .con_box .txt{position:relative;top:-50px;right:0;float:right;width:calc(100% - 20px); margin-left:20px}
+
+
+
+        }
+    </style>
+    <script>
+        $(function(){
+
+            var is_first = false;  // 2,3번째 버튼 클릭 시, 스크롤 되는 값 142 더하기
+            var basic = 95; // 스크롤 되는 기본값
+            var is_fixed = false; // fixed 여부 체크 
+
+            $('.cont').each(function(index){
+                var val = $(this).offset().top;
+                console.log(index + " / " + val);
+            });
+
+            $(window).scroll(function(){
+
+                var pos = $(document).scrollTop();
+                var subHgt1 = $('.history_idx .sub_visual').height();
+                var subHgt2 = $('.history_idx .b_title').height();
+                var subHgt3 = $('.history_idx .tab_list').height();
+                var objHgt = subHgt1 + subHgt2 + subHgt3 + 100;              
+                
+                if(pos > objHgt){
+                    $('.tab_list').addClass('fixed');
+                    $('.history_idx .htyCont').css('margin-top', '75px');
+                }
+                if(pos <= objHgt){
+                    $('.tab_list').removeClass('fixed');
+                    $('.history_idx .htyCont').css('margin-top', '-22.5px');
+                }
+            });
+
+            $(document).on('click', '.tab_list ul li a', function(){
+                var idx = $(this).parent().index();
+                var ofTop = $('#pr'+ (idx + 1)).offset().top;
+                console.log(idx);
+                $('.tab_list ul li').removeClass('on');
+                $(this).parent().addClass('on');
+                $('.con_box .cont').removeClass('on');
+                $('.con_box .cont').eq(idx).addClass('on');
+                
+                if(idx == 0){
+                    $('#sub .tab_fake').removeClass('on');
+                    $('html, body').animate({'scrollTop' : ofTop - 250 },700);
+                    is_first = false;
+                }else{
+                    if( !is_first ) { basic += 142; is_first = true } else { basic = 95 }
+                    $('html, body').animate({'scrollTop' : ofTop - (basic) },700, function(){
+                        if( $('.tab_list').hasClass('fixed') )  { $('#sub .tab_fake').addClass('on'); }
+                    });
+                }
+                
+            });
+            $(document).on('mouseover', '.con_box .cont', function(){
+                $('.con_box .cont').removeClass('on');
+                $(this).addClass('on');
+            });
+        });
+    </script>
+</head>
+<body>
+    <div id="header"></div>
+    <div id="sub" class="history_idx">
+        <div class="sub_visual"></div>  
+        <div class="con_wrap">
+            <div class="b_title">
+                <div class="size">
+                    <b>연혁</b>
+                </div>
+            </div>
+            <div class="tab_list">
+                <div class="size">
+                    <ul class="clear">
+                        <li class="on">
+                            <a href="javascript:;">현재 - 2021</a>
+                        </li>
+                        <li >
+                            <a href="javascript:;">2020 - 2011</a>
+                        </li>
+                        <li>
+                            <a href="javascript:;">2010 - 2004</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <span class="tab_fake"></span>
+            <div class="con_box ">
+                <div class="cont on" id="pr1">
+                    <div class="size">
+                        <div class="hlf_wrap">
+                            <div class="years tb">
+                                <div class="tbc">
+                                    <span>현재</span>
+                                    <span>2021</span>
+                                </div>
+                            </div>
+                            <div class="year_list">
+                                <div class="lists">
+                                    <b>2021</b>
+                                    <ul>
+                                        <li>
+                                            <p>칡소의 친자확인 및 SNP DNA검사 실시</p>
+                                            <p>전남 으뜸한우 DNA검사 시행</p>
+                                            <p>해삼, 어류, 조류 DNA 분석 시행</p>
+                                            <p>동·식물, 미생물 DNA 분석 시행</p>
+                                            <p>축산물 이력제 DNA 검사기관</p>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="cont " id="pr2">
+                    <div class="size">
+                        <div class="hlf_wrap">
+                            <div class="years tb">
+                                <div class="tbc">
+                                    <span>2020</span>
+                                    <span>2011</span>
+                                </div>
+                            </div>
+                            <div class="year_list">
+                                <div class="lists">
+                                    <b>2020</b>
+                                    <ul>
+                                        <li>
+                                            <p>한우 가축시장 DNA검사 시범 시행 </p>
+                                            <p>전남 으뜸한우 DNA검사 시행</p>
+                                            <p>녹십자 구절초 종판별 분석 기술 개발 </p>
+                                            <p>전북 한우가축시장 경매우 DNA검사 실시</p>
+                                            <p>축산물 이력제 DNA 검사기관</p>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="lists">
+                                    <b>2019</b>
+                                    <ul>
+                                        <li>
+                                            <p>칡소의 친자확인 및 SNP DNA검사 실시 </p>
+                                            <p>전라북도 고능력암소 축군조성사업 한우 친자확인 DNA검사</p>
+                                            <p>전남 으뜸한우 DNA검사 시행</p>
+                                            <p>축산물 이력제 DNA 검사기관</p>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div>div class="lists">
+                                    <b>2018</b>
+                                    <ul>
+                                        <li>
+                                            <p>반려동물(개)DNA 유전자 검사 마커개발</p>
+                                            <p>상어 단성생식확인 DNA분석 실시</p>
+                                            <p>칡소의 친자확인 및 SNP DNA검사 실시</p>
+                                            <p>전라북도 고능력암소 축군조성사업 한우 친자확인 DNA검사</p>
+                                            <p>축산물 이력제 DNA 검사기관</p>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="lists">
+                                    <b>2017</b>
+                                    <ul>
+                                        <li>
+                                            <p>돼지의 친자확인 DNA검사 </p>
+                                            <p>칡소의 친자확인 및 SNP DNA검사 실시</p>
+                                            <p>전라북도 고능력암소 축군조성사업 한우 친자확인 DNA검사</p>
+                                            <p>축산물 이력제 DNA 검사기관</p>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="lists">
+                                    <b>2016</b>
+                                    <ul>
+                                        <li>
+                                            <p>돼지의 친자확인 DNA검사 </p>
+                                            <p>칡소의 친자확인 및 SNP DNA검사 실시</p>
+                                            <p>인육 한약재의 인간 DNA감식</p>
+                                            <p>전라북도 고능력암소 축군조성사업 한우 친자확인 DNA검사</p>
+                                            <p>축산물 이력제 DNA 검사기관</p>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="lists">
+                                    <b>2015</b>
+                                    <ul>
+                                        <li>
+                                            <p>해마의 종 분류 DNA검사</p>
+                                            <p>환형동물의 종 분류 및 계통분석 DNA검사</p>
+                                            <p>백수오와 이엽우피소 종 분류 DNA검사 </p>
+                                            <p>해삼, 어류, 조류 DNA 분석 시행</p>
+                                            <p>축산물 이력제 DNA 검사기관</p>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="lists">
+                                    <b>2014</b>
+                                    <ul>
+                                        <li>
+                                            <p>해삼의 친자확인 검사 기술 개발 및 검사</p>
+                                            <p>서·남해안 염생식물의 종 분류 및 계통분류 DNA 분석</p>
+                                            <p> 토양 내 유용미생물 (effective microorganism) 검출 및 종 분류 DNA검사</p>
+                                            <p>축산물 이력제 DNA 검사기관</p>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="lists">
+                                    <b>2013</b>
+                                    <ul>
+                                        <li>
+                                            <p>한국 난초의 계통분류 및 친자확인 DNA검사 실시</p>
+                                            <p>인육캡슐 인간 DNA 감식 및 슈퍼박테리아 검출</p>
+                                            <p>녹용의 종 분류 검사 기술 개발 및 검사</p>
+                                            <p>축산물 이력제 DNA 검사기관</p>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="lists">
+                                    <b>2012</b>
+                                    <ul>
+                                        <li>
+                                            <p>신 소득후보 작물의 종 분류 및 계통분류 DNA검사 실시</p>
+                                            <p>육류 식품의 종 분류 DNA검사 실시</p>
+                                            <p>대하새우의 종 분류 및 흰반점바이러스 검출기술 개발</p>
+                                            <p>축산물 이력제 DNA 검사기관</p>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="lists">
+                                    <b>2011</b>
+                                    <ul>
+                                        <li>
+                                            <p>해양조류 종 분류를 위한 DNA 분석 기술 개발</p>
+                                            <p>해양 내생조류(endophytic algae)의 종 분류 및 계통추적 DNA검사 실시</p>
+                                            <p>민물 어류의 종 분류 및 계통분류 DNA검사</p>
+                                            <p>축산물 이력제 DNA 검사기관</p>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="cont " id="pr3">
+                    <div class="size">
+                        <div class="hlf_wrap">
+                            <div class="years tb">
+                                <div class="tbc">
+                                    <span>2010</span>
+                                    <span>2004</span>
+                                </div>
+                            </div>
+                            <div class="year_list">
+                                <div class="lists">
+                                    <b>2010</b>
+                                    <ul>
+                                        <li>
+                                            <p>해양 미세조류(micro algae)의 종 분류 및 계통추적 DNA검사 실시</p>
+                                            <p>식용작물의 미생물성 질병 확인 DNA 검사 서비스 실시</p>
+                                            <p>농협중앙회 한우 친자확인 DNA검사 기관으로 선정</p>
+                                            <p>축산물 이력제 DNA 검사기관</p>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="lists">
+                                    <b>2009</b>
+                                    <ul>
+                                        <li>
+                                            <p>유용농업 미생물 탐지 DNA검사 실시</p>
+                                            <p>식품 내 이물질 확인 DNA검사 기술 개발</p>
+                                            <p>유기견 방지 DNA 바코딩 시스템 개발</p>
+                                            <p>축산물 이력제 DNA 검사기관</p>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="lists">
+                                    <b>2008</b>
+                                    <ul>
+                                        <li>
+                                            <p>녹용 종 분류 DNA 검사 실시</p>
+                                            <p>자생 미생물 종 분류 DNA 검사 및 계통분류 분석</p>
+                                            <p>축산물 이력제 DNA 검사기관</p>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="lists">
+                                    <b>2007</b>
+                                    <ul>
+                                        <li>
+                                            <p>축산물 이력제 DNA 검사기관</p>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="lists">
+                                    <b>2006</b>
+                                    <ul>
+                                        <li>
+                                            <p>독도 자생 미생물 종 분류 DNA 검사 및 계통분류 분석</p>
+                                            <p>전라북도 쇠고기이력추적제 사육단계 DNA검사기관으로 선정</p>
+                                            <p>MBC 문화방송 사슴 종 분류 DNA 분석</p>
+                                            <p>해양수부 어류 계통분류 DNA 분석 연구 수행</p>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="lists">
+                                    <b>2005</b>
+                                    <ul>
+                                        <li>
+                                            <p>황우석교수 논문조작사건 관련 유전자 분석 수행</p>
+                                            <p>환경부 “멸종위기한국특산어류보존 및 복원사업” 유전자분석 및 DNA Library 구축</p>
+                                            <p>환경부 “차세대환경핵심기술개발사업” 유전자분석 및 DNA Library 구축</p>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="lists">
+                                    <b>2004</b>
+                                    <ul>
+                                        <li>
+                                            <p>사람 친자확인 DNA검사 시행</p>
+                                            <p>miDNA유전체연구소 설립</p>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
