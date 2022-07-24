@@ -200,7 +200,7 @@
 
             var is_first = false;  // 2,3번째 버튼 클릭 시, 스크롤 되는 값 142 더하기
             var basic = 95; // 스크롤 되는 기본값
-            var is_fixed = false; // fixed 여부 체크 
+            var is_cliked = false; // click 여부 체크 
 
             $('.cont').each(function(index){
                 var val = $(this).offset().top;
@@ -214,13 +214,26 @@
                 var subHgt2 = $('.history_idx .b_title').height();
                 var subHgt3 = $('.history_idx .tab_list').height();
                 var objHgt = subHgt1 + subHgt2 + subHgt3 + 100;       
-
+                
+                if ( !is_cliked ) {
+                    $('.cont').each(function(index){
+                        var val = $(this).offset().top;
+                        var target_h = $(this).innerHeight();
+                        console.log(index + " / " + val);
+                        if ( (val-150) <= pos && (val+target_h - 100) > pos ) { 
+                            $('.tab_list ul li').removeClass('on');
+                            $('.tab_list ul li').eq(index).addClass('on');
+                            $('.con_box .cont').removeClass('on');
+                            $(this).addClass('on');
+                        }
+                    });
+                }
                 console.log(pos);
                 
                 if(pos > objHgt){
                     $('.tab_list').addClass('fixed');
                     //$('#sub .tab_fake').addClass('on'); 
-                    $('.history_idx .htyCont').css('margin-top', '75px');
+                    //$('.history_idx .htyCont').css('margin-top', '75px');
                     is_first = true ;
                 }
                 if(pos <= objHgt){
@@ -228,9 +241,11 @@
                     $('#sub .tab_fake').removeClass('on');
                     is_first = false;
                     console.log("***********" + pos);
-                    $('.history_idx .htyCont').css('margin-top', '-22.5px');
+                    //$('.history_idx .htyCont').css('margin-top', '-22.5px');
                     
                 }
+
+
             });
 
             $(document).on('click', '.tab_list ul li a', function(){
@@ -241,15 +256,20 @@
                 $(this).parent().addClass('on');
                 $('.con_box .cont').removeClass('on');
                 $('.con_box .cont').eq(idx).addClass('on');
+
+                is_cliked = true;
                 
                 if(idx == 0){
                     $('#sub .tab_fake').removeClass('on');
-                    $('html, body').animate({'scrollTop' : ofTop - 250 },700);
+                    $('html, body').animate({'scrollTop' : ofTop - 250 },700, function(){
+                        is_cliked = false;
+                    });
                     is_first = false;
                 }else{
                     if( !is_first ) { basic = 95 + 142 ; is_first = true } else { basic = 95 }
                     $('html, body').animate({'scrollTop' : ofTop - (basic) },700, function(){
                         if( $('.tab_list').hasClass('fixed') )  { $('#sub .tab_fake').addClass('on'); }
+                        is_cliked = false;
                     });
                 }
                 
