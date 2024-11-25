@@ -144,32 +144,34 @@
                     },
                 },
                 on: {
+                    // 슬라이드 전환이 시작될 때 호출되는 이벤트
                     slideChangeTransitionStart: function () {
                         if (!swiper1.slides[swiper1.activeIndex].classList.contains('youtube')) {
-                            //if (player && videoEnded) {
+                            // 현재 슬라이드가 유튜브 슬라이드가 아닐 경우
                             if (player && player.pauseVideo) {
-                                player.pauseVideo();
+                                player.pauseVideo();  // 비디오 일시 정지
                                 videoEnded = false;
                             }
-                            swiper1.params.autoplay.delay = 5000; 
-                            swiper1.autoplay.start();
+                            swiper1.params.autoplay.delay = 5000;
+                            swiper1.autoplay.start();  // 자동 재생 시작
                         } else {
-                            console.log(player);
-                            console.log(player.playVideo);
-                            player.playVideo();
-                            swiper1.autoplay.stop();
-                            videoEnded = true;
-                        }
-                    },
-                    slideChangeTransitionEnd: function () {
-                        if (swiper1.slides[swiper1.activeIndex].classList.contains('youtube')) {
-                            //if (player && !videoEnded) {
+                            // 현재 슬라이드가 유튜브 슬라이드일 경우
                             if (player && player.playVideo) {
-                                console.log(player);
-                                player.playVideo();
+                                player.playVideo();  // 비디오 재생
+                                swiper1.autoplay.stop();  // 자동 재생 멈춤
                                 videoEnded = true;
                             }
-                        }                
+                        }
+                    },
+                    // 슬라이드 전환이 끝날 때 호출되는 이벤트
+                    slideChangeTransitionEnd: function () {
+                        if (swiper1.slides[swiper1.activeIndex].classList.contains('youtube')) {
+                            if (player && player.playVideo) {
+                                player.playVideo();  // 비디오 재생 유지
+                                swiper1.autoplay.stop();  // 자동 재생 멈춤
+                                videoEnded = true;
+                            }
+                        }
                     }
                 }
             });
