@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="http://link2us.mir9.co.kr/resources/css/swiper.min.css">
+    <style>        
+        #section01 .swiper-slide{
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            height: 960px;
+        }
+        #section01 .swiper-slide.slide01 {
+            background: pink;
+        }
+
+        #section01 .swiper-slide.youtube .video-container {
+            position: relative;
+            width: 100%;          
+            padding-bottom: 56.25%; 
+            height: 0;
+            overflow: hidden;      
+        }
+
+        #section01 .swiper-slide.youtube iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        #section01 .swiper-slide .txt_box{
+            margin-top: 420px;
+        }
+        #section01 .swiper-slide .txt_box img{
+            margin-left: 50px;
+            transition: 1s ease-in-out;
+        }
+        #section01 .swiper-slide.swiper-slide-active .txt_box img{
+            margin-left: 0;
+        }
+        #section01 .swiper-slide .txt_box .l_m{
+            margin-left: 50px;
+            transition: 1s ease-in-out;
+        }
+        #section01 .swiper-slide.swiper-slide-active .txt_box .l_m{
+            margin-left: 0;
+        }
+        #section01 .swiper-slide .txt_box h2{
+            font-size: 3.125rem;
+            font-weight: bold;
+            line-height: 1.2;
+            letter-spacing: -1.5px;
+            color: #f8f8f8;
+}
+    </style>
+</head>
+<body>
+    <div id="section01">
+        <div class="slide_all_wrap">
+            <div class="swiper section01_swiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide slide01">
+                        <div class="txt_box inner">1111</div>
+                    </div>     
+                    <div class="swiper-slide youtube">
+                        <div class="video-container">
+                            <iframe 
+                                id="youtubePlayer" 
+                                src="https://www.youtube.com/embed/jRfspBUedek?enablejsapi=1&autoplay=1&controls=0" 
+                                title="Link2us_[Homepage]_KOR" 
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                referrerpolicy="strict-origin-when-cross-origin" 
+                                allowfullscreen>
+                            </iframe>
+                        </div>
+                    </div>     
+                </div>  
+            </div>  
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="http://link2us.mir9.co.kr/resources/js/swiper.min.js"></script>
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script>
+        
+        var player;
+        var videoEnded = false;
+        var swiper1;
+
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('youtubePlayer', {
+                videoId: 'jRfspBUedek',
+                events: {
+                    'onReady': onPlayerReady,
+                    'onStateChange': onPlayerStateChange
+                }
+            });
+
+            console.log("onYouTubeIframeAPIReady");
+        }
+
+        function onPlayerReady(event) {
+            //event.target.playVideo();
+            console.log("onPlayerReady");
+        }
+
+        function onPlayerStateChange(event) {
+            if (event.data === YT.PlayerState.ENDED) {
+                videoEnded = true;
+                swiper1.slideNext();
+            }
+            console.log("onPlayerStateChange");
+        }    
+
+        $(document).ready(function(){
+
+            swiper1 = new Swiper("#section01 .section01_swiper", {
+                effect: 'fade',
+                loop: true,
+                speed : 1000,
+                autoplay: {
+                    delay: 5000,
+                    disableOnInteraction: false,
+                },
+                fadeEffect: {
+                    crossFade: false,
+                },
+                navigation: {
+                    nextEl: "#section01 .swiper-button-next",
+                    prevEl: "#section01 .swiper-button-prev",
+                },
+                pagination: {
+                    el: "#section01 .swiper-pagination",
+                    clickable: true,
+                    renderBullet: function (index, className) {
+                        return '<span class="' + className + '">' + '0' + (index + 1) + "</span>";
+                    },
+                },
+                on: {
+                    slideChangeTransitionStart: function () {
+                        if (!swiper1.slides[swiper1.activeIndex].classList.contains('youtube')) {
+                            //if (player && videoEnded) {
+                            if (player && player.pauseVideo) {
+                                player.pauseVideo();
+                                videoEnded = false;
+                            }
+                            swiper1.params.autoplay.delay = 5000; 
+                            swiper1.autoplay.start();
+                        } else {
+                            console.log(player);
+                            console.log(player.playVideo);
+                            player.playVideo();
+                            swiper1.autoplay.stop();
+                            videoEnded = true;
+                        }
+                    },
+                    slideChangeTransitionEnd: function () {
+                        if (swiper1.slides[swiper1.activeIndex].classList.contains('youtube')) {
+                            //if (player && !videoEnded) {
+                            if (player && player.playVideo) {
+                                console.log(player);
+                                player.playVideo();
+                                videoEnded = true;
+                            }
+                        }                
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
