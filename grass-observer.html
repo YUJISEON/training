@@ -396,6 +396,25 @@
     let isSection3ScrollTop = false;
     let touchStartY = 0;
     let isTouchMoving = false;
+    let smoothEnabled = false;
+
+    function enableSmoothScroll() {
+        if (smoothEnabled) return;
+
+        SmoothScroll({
+            animationTime: 800,
+            stepSize: 80,
+        });
+
+        smoothEnabled = true;
+    }
+
+    function disableSmoothScroll() {
+        if(SmoothScroll) { 
+            SmoothScroll.destroy();   
+            smoothEnabled = false;
+        }
+    }
 
     // 모바일 터치 이벤트로 인한 pull-to-refresh 방지
     document.addEventListener('touchstart', function(e) {
@@ -436,6 +455,7 @@
 
             if(!section3Observer.isEnabled) {
                 section3Observer.enable();
+                enableSmoothScroll();
                 isSection3ScrollTop = false;
             }
         } 
@@ -449,7 +469,10 @@
             touchSpeed: -1,
             onUp: () => {
                 //console.log('section3Observer onUp 1111');
-                if (!isSection3ScrollTop) section3Observer.disable();
+                if (!isSection3ScrollTop) {
+                    section3Observer.disable();
+                    disableSmoothScroll();
+                }
             },
             onDown: () => {
                 //console.log('section3Observer onDown 1111');
@@ -463,11 +486,13 @@
 
                         if(currentIndex == 2) {
                             section3Observer.disable();
+                            disableSmoothScroll();
                             gotoSection(currentIndex - 1, -1);
                         }
                     }
                 } else {
                     section3Observer.disable();
+                    disableSmoothScroll();
                 }
             },
             tolerance: 10,
@@ -655,8 +680,8 @@
         touchInertia: false,
     });
 
-    setZIndex(0)
+    setZIndex(0);
+    disableSmoothScroll()
 
 </script>
 </html>
-
