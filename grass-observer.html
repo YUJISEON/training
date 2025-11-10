@@ -191,9 +191,22 @@
             height: 50vh !important;
             background-color: pink;           
         }
+
+        .scroll-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #000;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            z-index: 1000;
+        }
     </style>
 </head>
 <body>
+    <a href="javascript:void(0)" class="scroll-to-top">Scroll to Top</a>
     <div id="container">
         <div id="scrollContainer" class="wrapper">
             <section class="section section-01 move-section animated-section">
@@ -376,6 +389,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/DrawSVGPlugin.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/smooth-scrollbar@8.8.4/dist/smooth-scrollbar.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/smoothscroll/1.5.1/SmoothScroll.min.js"></script>
 <script>        
@@ -768,9 +782,51 @@
         touchInertia: false,
     });
 
-    setZIndex(0);
-    disableSmoothScroll();
-    updateBodyScrollStyle(0); // 초기 상태 설정
+    init();
 
+    function init() {
+        currentIndex = 0
+        isSection3ScrollTop = false;
+        touchStartY = 0;
+        //isTouchMoving = false;
+        //smoothEnabled = false;
+        // section3Observer = null;
+        // scrollObserver = null;
+        state.isPlaying = false;
+        state.mode = "animated";
+
+        setZIndex(0);
+        disableSmoothScroll();
+        updateBodyScrollStyle(0); 
+        scrollObserver.enable();    
+    }
+
+    document.querySelector('.scroll-to-top').addEventListener('click', () => {
+        //gsap.defaults({overwrite:'auto'})
+
+        let tl = gsap.timeline();
+        tl.to(window, {
+            scrollTo: 0,
+            duration: 0.5,
+            ease: 'power1.inOut',
+            overwrite:'auto'
+        })
+        .to(animatedSections[1], {
+            clipPath: 'inset(0 0 0% 0)',
+            duration: 0.5,
+            ease: 'power1.inOut',
+            zIndex : 3
+        })
+        .to(animatedSections[0], {
+            clipPath: 'inset(0 0 0% 0)',
+            duration: 0.5,
+            ease: 'power1.inOut',
+            zIndex : 4,
+            onComplete: () => {
+                init();
+            }
+        });
+        
+    });
 </script>
 </html>
