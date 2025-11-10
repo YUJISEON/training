@@ -2,12 +2,28 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="mobile-web-app-capable" content="yes">
     <title>Document</title>
     <style>
         * {
             margin: 0;
             padding: 0;
+        }
+
+        html, body {
+            overscroll-behavior: none;
+            overscroll-behavior-y: none;
+            -webkit-overflow-scrolling: touch;
+            touch-action: pan-y;
+            overflow-x: hidden;
+        }
+
+        #container {
+            width: 100vw;
+            min-height: 100vh;
+            overscroll-behavior: none;
+            overscroll-behavior-y: none;
         }
 
         /*html, body {
@@ -377,6 +393,41 @@
     let section3Observer; 
     let section3ScrollHandler;
     let isSection3ScrollTop = false;
+    let touchStartY = 0;
+    let isTouchMoving = false;
+
+    // 모바일 터치 이벤트로 인한 pull-to-refresh 방지
+    document.addEventListener('touchstart', function(e) {
+        touchStartY = e.touches[0].clientY;
+        isTouchMoving = false;
+    }, { passive: true });
+
+    document.addEventListener('touchmove', function(e) {
+        if (!isTouchMoving) {
+            isTouchMoving = true;
+        }
+        
+        const touchY = e.touches[0].clientY;
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+        
+        // 페이지 최상단에서 아래로 드래그하는 경우 preventDefault
+        if (scrollTop === 0 && touchY > touchStartY) {
+            e.preventDefault();
+            return false;
+        }
+        
+        // 페이지 최하단에서 위로 드래그하는 경우도 방지 (필요시)
+        const scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight;
+        const clientHeight = window.innerHeight || document.documentElement.clientHeight;
+        if (scrollTop + clientHeight >= scrollHeight && touchY < touchStartY) {
+            e.preventDefault();
+            return false;
+        }
+    }, { passive: false });
+
+    document.addEventListener('touchend', function(e) {
+        isTouchMoving = false;
+    }, { passive: true });
 
     window.addEventListener('scroll', (e) => {
         if (window.scrollY === 0 && currentIndex == 2) { 
@@ -557,7 +608,14 @@
         target: window,
         type: "wheel,touch,pointer",
         wheelSpeed: -1,
-        touchSpeed: -1, 
+        touchSpeed: -1,
+        preventDefault: function() {
+            // 모바일에서 페이지 최상단일 때만 preventDefault
+            if (window.scrollY === 0) {
+                return true;
+            }
+            return state.mode === "animated";
+        },
         onDown: () => {
             if (!state.isPlaying && state.mode === "animated") {
                 //console.log('1. currentIndex : ', currentIndex);
@@ -593,7 +651,6 @@
             }
         },
         tolerance: 10,
-        preventDefault: true,
         touchInertia: false,
     });
 
