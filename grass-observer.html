@@ -16,7 +16,7 @@
             overscroll-behavior-y: none;
             -webkit-overflow-scrolling: touch;
             touch-action: pan-y;
-            overflow-x: hidden;
+            overflow-x: hidden !important;
         }
 
         #container {
@@ -116,7 +116,7 @@
             overflow-x: hidden;
             scroll-behavior: smooth;
             background-color: skyblue;
-            height: 200vh !important;
+            height: auto !important;
         }
 
         .wrapper > .section.section-03::-webkit-scrollbar {  width: 3px;  height: 1px;}
@@ -179,6 +179,12 @@
             will-change: transform;  /* 성능 최적화 */
             transform: translateZ(0);  /* GPU 레이어 강제 생성 */
             backface-visibility: hidden;  /* 뒤면 숨김으로 성능 향상 */
+            position: absolute;
+            top: 0;
+            left: 50%;
+            -webkit-transform: translateX(-50%);
+            -ms-transform: translateX(-50%);
+            transform: translateX(-50%);
         }
 
         .section.section-04 {
@@ -221,141 +227,139 @@
             <section class="section section-03 scroller-section animated-section normal-section">
                 <div class="outer">
                     <div class="inner">
-                        <div class="bg">           
-                            <div class="pin-video-area">
-                                <div class="pin-video">
-                                    <div class="video-area">
-                                        <video src="./asset/video_main_visual_03.mp4" autoplay muted loop></video>
-                                    </div>
-                                </div> 
-                            </div>                
-                            <article class="txt-area">                        
-                                <div class="txt-list">
-                                    <ul>
-                                        <li>
-                                            <span>Lorem</span>
-                                            <span>ipsum</span>
-                                        </li>
-                                        <li>
-                                            <span>dolor</span>
-                                            <span>sit amet</span>
-                                        </li>
-                                        <li>
-                                            <span>consectetur</span>
-                                            <span>adipisicing</span>
-                                        </li>
-                                        <li>                        
-                                            <span>elit</span>
-                                            <span>Dolorem</span>
-                                        </li>
-                                        <li>
-                                            <span>Lorem</span>
-                                            <span>ipsum</span>
-                                        </li>
-                                        <li>
-                                            <span>dolor</span>
-                                            <span>sit amet</span>
-                                        </li>
-                                        <li>
-                                            <span>consectetur</span>
-                                            <span>adipisicing</span>
-                                        </li>
-                                        <li>                        
-                                            <span>elit</span>
-                                            <span>Dolorem</span>
-                                        </li>
-                                        <li>
-                                            <span>Lorem</span>
-                                            <span>ipsum</span>
-                                        </li>
-                                        <li>
-                                            <span>dolor</span>
-                                            <span>sit amet</span>
-                                        </li>
-                                        <li>
-                                            <span>consectetur</span>
-                                            <span>adipisicing</span>
-                                        </li>
-                                        <li>                        
-                                            <span>elit</span>
-                                            <span>Dolorem</span>
-                                        </li>
-                                        <li>
-                                            <span>Lorem</span>
-                                            <span>ipsum</span>
-                                        </li>
-                                        <li>
-                                            <span>dolor</span>
-                                            <span>sit amet</span>
-                                        </li>
-                                        <li>
-                                            <span>consectetur</span>
-                                            <span>adipisicing</span>
-                                        </li>
-                                        <li>                        
-                                            <span>elit</span>
-                                            <span>Dolorem</span>
-                                        </li>
-                                        <li>
-                                            <span>Lorem</span>
-                                            <span>ipsum</span>
-                                        </li>
-                                        <li>
-                                            <span>dolor</span>
-                                            <span>sit amet</span>
-                                        </li>
-                                        <li>
-                                            <span>consectetur</span>
-                                            <span>adipisicing</span>
-                                        </li>
-                                        <li>                        
-                                            <span>elit</span>
-                                            <span>Dolorem</span>
-                                        </li>
-                                        <li>
-                                            <span>consectetur</span>
-                                            <span>adipisicing</span>
-                                        </li>
-                                        <li>                        
-                                            <span>elit</span>
-                                            <span>Dolorem</span>
-                                        </li>
-                                        <li>
-                                            <span>Lorem</span>
-                                            <span>ipsum</span>
-                                        </li>
-                                        <li>
-                                            <span>dolor</span>
-                                            <span>sit amet</span>
-                                        </li>
-                                        <li>
-                                            <span>consectetur</span>
-                                            <span>adipisicing</span>
-                                        </li>
-                                        <li>                        
-                                            <span>elit</span>
-                                            <span>Dolorem</span>
-                                        </li>
-                                        <li>
-                                            <span>Lorem</span>
-                                            <span>ipsum</span>
-                                        </li>
-                                        <li>
-                                            <span>dolor</span>
-                                            <span>sit amet</span>
-                                        </li>
-                                        <li>
-                                            <span>consectetur</span>
-                                            <span>adipisicing</span>
-                                        </li>
-                                        <li>                        
-                                            <span>elit</span>
-                                            <span>Dolorem</span>
-                                        </li>
-                                    </ul>
+                        <div class="pin-video-area">
+                            <div class="pin-video">
+                                <div class="video-area">
+                                    <video src="./asset/video_main_visual_03.mp4" autoplay muted loop></video>
                                 </div>
-                            </article>         
-                        </div>
+                            </div> 
+                        </div>                
+                        <article class="txt-area">                        
+                            <div class="txt-list">
+                                <ul>
+                                    <li>
+                                        <span>Lorem</span>
+                                        <span>ipsum</span>
+                                    </li>
+                                    <li>
+                                        <span>dolor</span>
+                                        <span>sit amet</span>
+                                    </li>
+                                    <li>
+                                        <span>consectetur</span>
+                                        <span>adipisicing</span>
+                                    </li>
+                                    <li>                        
+                                        <span>elit</span>
+                                        <span>Dolorem</span>
+                                    </li>
+                                    <li>
+                                        <span>Lorem</span>
+                                        <span>ipsum</span>
+                                    </li>
+                                    <li>
+                                        <span>dolor</span>
+                                        <span>sit amet</span>
+                                    </li>
+                                    <li>
+                                        <span>consectetur</span>
+                                        <span>adipisicing</span>
+                                    </li>
+                                    <li>                        
+                                        <span>elit</span>
+                                        <span>Dolorem</span>
+                                    </li>
+                                    <li>
+                                        <span>Lorem</span>
+                                        <span>ipsum</span>
+                                    </li>
+                                    <li>
+                                        <span>dolor</span>
+                                        <span>sit amet</span>
+                                    </li>
+                                    <li>
+                                        <span>consectetur</span>
+                                        <span>adipisicing</span>
+                                    </li>
+                                    <li>                        
+                                        <span>elit</span>
+                                        <span>Dolorem</span>
+                                    </li>
+                                    <li>
+                                        <span>Lorem</span>
+                                        <span>ipsum</span>
+                                    </li>
+                                    <li>
+                                        <span>dolor</span>
+                                        <span>sit amet</span>
+                                    </li>
+                                    <li>
+                                        <span>consectetur</span>
+                                        <span>adipisicing</span>
+                                    </li>
+                                    <li>                        
+                                        <span>elit</span>
+                                        <span>Dolorem</span>
+                                    </li>
+                                    <li>
+                                        <span>Lorem</span>
+                                        <span>ipsum</span>
+                                    </li>
+                                    <li>
+                                        <span>dolor</span>
+                                        <span>sit amet</span>
+                                    </li>
+                                    <li>
+                                        <span>consectetur</span>
+                                        <span>adipisicing</span>
+                                    </li>
+                                    <li>                        
+                                        <span>elit</span>
+                                        <span>Dolorem</span>
+                                    </li>
+                                    <li>
+                                        <span>consectetur</span>
+                                        <span>adipisicing</span>
+                                    </li>
+                                    <li>                        
+                                        <span>elit</span>
+                                        <span>Dolorem</span>
+                                    </li>
+                                    <li>
+                                        <span>Lorem</span>
+                                        <span>ipsum</span>
+                                    </li>
+                                    <li>
+                                        <span>dolor</span>
+                                        <span>sit amet</span>
+                                    </li>
+                                    <li>
+                                        <span>consectetur</span>
+                                        <span>adipisicing</span>
+                                    </li>
+                                    <li>                        
+                                        <span>elit</span>
+                                        <span>Dolorem</span>
+                                    </li>
+                                    <li>
+                                        <span>Lorem</span>
+                                        <span>ipsum</span>
+                                    </li>
+                                    <li>
+                                        <span>dolor</span>
+                                        <span>sit amet</span>
+                                    </li>
+                                    <li>
+                                        <span>consectetur</span>
+                                        <span>adipisicing</span>
+                                    </li>
+                                    <li>                        
+                                        <span>elit</span>
+                                        <span>Dolorem</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </article>  
                     </div>  
                 </div>
             </section> 
@@ -402,17 +406,57 @@
         if (smoothEnabled) return;
 
         SmoothScroll({
-            animationTime: 800,
-            stepSize: 80,
+            // animationTime: 800,
+            // stepSize: 80,
         });
 
         smoothEnabled = true;
+
+        console.log('enableSmoothScroll : ', SmoothScroll);
     }
 
     function disableSmoothScroll() {
         if(SmoothScroll) { 
             SmoothScroll.destroy();   
             smoothEnabled = false;
+        }
+
+        console.log('disableSmoothScroll : ', SmoothScroll);
+    }
+
+    // html, body 스타일 제어 함수
+    function updateBodyScrollStyle(index) {
+        const html = document.documentElement;
+        const body = document.body;
+
+        console.log('updateBodyScrollStyle : ', index);
+        
+        if (index < 2) {
+            // 섹션 0, 1일 때: 100vh 고정, overflow hidden
+            gsap.set([html, body], {
+                height: '100vh',
+                overflow: 'hidden',
+                //position: 'fixed',
+                //width: '100%',
+                ///top: 0,
+                //left: 0
+            });
+        } else {
+            // 섹션 2 이상일 때: 스크롤 가능하도록 원래대로
+            gsap.set([html, body], {
+                height: 'auto',
+                overflow: 'auto',
+                overflowY: 'auto',
+                //position: 'static',
+                //width: 'auto',
+                //top: 'auto',
+                //left: 'auto'
+            });
+            
+            // 섹션 2로 전환 시 스크롤 위치를 0으로 설정
+            requestAnimationFrame(() => {
+                window.scrollTo(0, 0);
+            });
         }
     }
 
@@ -455,11 +499,52 @@
 
             if(!section3Observer.isEnabled) {
                 section3Observer.enable();
-                enableSmoothScroll();
+                disableSmoothScroll();
                 isSection3ScrollTop = false;
             }
         } 
     })
+
+    ScrollTrigger.create({
+        trigger: '.pin-video-area',
+        start: 'top top',
+        end: 'bottom bottom',
+        endTrigger: '.section-03',
+        pin: true,
+        pinSpacing: false,
+        //pinType: "transform",  // transform 대신 fixed 사용
+        //anticipatePin: 0,  // anticipatePin을 0으로 설정
+        //invalidateOnRefresh: true,
+        //refreshPriority: -1,  // 우선순위 낮춤
+        //markers: true,
+        id: 'pin-video-area',
+        //markers: true,
+    });
+
+    const txts = document.querySelectorAll('.txt-area ul li span');
+    txts.forEach(txt => {
+        gsap.set(txt, { autoAlpha: 0 })
+
+        const txtAnimation = gsap.fromTo(txt, {
+            autoAlpha: 0
+        }, {
+            autoAlpha: 1,
+            duration: 1,
+            ease: 'power1.inOut'
+        });
+
+        ScrollTrigger.create({
+            trigger: txt,
+            start: 'top center',
+            end: 'bottom center',
+            scrub: true,
+            animation: txtAnimation,
+            //markers: true,
+            onLeave: () => {
+                gsap.set(txt, { autoAlpha: 0 })
+            }
+        });
+    });
 
     function addSection3ScrollListener() {
         section3Observer = Observer.create({
@@ -471,7 +556,7 @@
                 //console.log('section3Observer onUp 1111');
                 if (!isSection3ScrollTop) {
                     section3Observer.disable();
-                    disableSmoothScroll();
+                    enableSmoothScroll();
                 }
             },
             onDown: () => {
@@ -492,7 +577,7 @@
                     }
                 } else {
                     section3Observer.disable();
-                    disableSmoothScroll();
+                    enableSmoothScroll();
                 }
             },
             tolerance: 10,
@@ -571,6 +656,7 @@
             scrollObserver.enable();
 
             removeSection3ScrollListener();
+            updateBodyScrollStyle(index); // 스타일 업데이트
         }
 
         // 표준 애니메이션 섹션 전환
@@ -579,7 +665,8 @@
                 defaults: { duration: 1.25, ease: "power1.inOut" },
                 onComplete: () => {
                     state.isPlaying = false;
-                    currentIndex = index;   
+                    currentIndex = index;
+                    updateBodyScrollStyle(currentIndex); // 스타일 업데이트
                 }
             });
 
@@ -668,7 +755,8 @@
                             scrollObserver.disable();
 
                             //addSection3ScrollListener();
-                            addSection3ScrollListener(); 
+                            addSection3ScrollListener();
+                            updateBodyScrollStyle(2); // 섹션 2로 전환 시 스크롤 가능하도록
 
                             return;
                         }
@@ -681,7 +769,8 @@
     });
 
     setZIndex(0);
-    disableSmoothScroll()
+    disableSmoothScroll();
+    updateBodyScrollStyle(0); // 초기 상태 설정
 
 </script>
 </html>
