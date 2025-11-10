@@ -415,6 +415,7 @@
     let touchStartY = 0;
     let isTouchMoving = false;
     let smoothEnabled = false;
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) ||  (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
 
     function enableSmoothScroll() {
         if (smoothEnabled) return;
@@ -516,8 +517,14 @@
                 disableSmoothScroll();
                 isSection3ScrollTop = false;
             }
-        } 
-    })
+        } else if (isIOS && window.scrollY > 0 && currentIndex == 2 && state.mode === "scroll") {
+            // iOS에서 스크롤이 시작되면 즉시 section3Observer 비활성화하고 smoothScroll 활성화
+            // if (section3Observer && section3Observer.isEnabled) {
+            //     section3Observer.disable();
+            //     enableSmoothScroll();
+            // }
+        }
+    }, { passive: true })
 
     ScrollTrigger.create({
         trigger: '.pin-video-area',
@@ -565,7 +572,7 @@
             target: window,
             type: "wheel,touch,pointer",
             wheelSpeed: -1,
-            touchSpeed: -1,
+            touchSpeed: isIOS ? -0.5 : -1,
             onUp: () => {
                 //console.log('section3Observer onUp 1111');
                 if (!isSection3ScrollTop) {
@@ -594,9 +601,16 @@
                     enableSmoothScroll();
                 }
             },
-            tolerance: 10,
+            tolerance: isIOS ? 5 : 10,
             preventDefault: function() {
+                // iOS에서 스크롤이 시작되면 즉시 preventDefault 해제
+                if (isIOS && window.scrollY > 0) {
+                    return false;  // ✅ 즉시 해제
+                }
+                
                 return window.scrollY === 0;
+
+                //return window.scrollY === 0;
             }
         });
     }
