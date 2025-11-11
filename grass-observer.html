@@ -518,11 +518,11 @@
                 isSection3ScrollTop = false;
             }
         } else if (isIOS && window.scrollY > 0 && currentIndex == 2 && state.mode === "scroll") {
-            // iOS에서 스크롤이 시작되면 즉시 section3Observer 비활성화하고 smoothScroll 활성화
-            // if (section3Observer && section3Observer.isEnabled) {
-            //     section3Observer.disable();
-            //     enableSmoothScroll();
-            // }
+            //iOS에서 스크롤이 시작되면 즉시 section3Observer 비활성화하고 smoothScroll 활성화
+            if (section3Observer && section3Observer.isEnabled) {
+                section3Observer.disable();
+                enableSmoothScroll();
+            }
         }
     }, { passive: true })
 
@@ -609,8 +609,6 @@
                 }
                 
                 return window.scrollY === 0;
-
-                //return window.scrollY === 0;
             }
         });
     }
@@ -749,7 +747,7 @@
         target: window,
         type: "wheel,touch,pointer",
         wheelSpeed: -1,
-        touchSpeed: -1,
+        touchSpeed: isIOS ? -0.5 : -1,
         preventDefault: function() {
             // 모바일에서 페이지 최상단일 때만 preventDefault
             if (window.scrollY === 0) {
