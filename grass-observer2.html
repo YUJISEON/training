@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="mobile-web-app-capable" content="yes">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html, body {
+            overscroll-behavior: none;
+            overscroll-behavior-y: none;
+            -webkit-overflow-scrolling: touch;
+            touch-action: pan-y;
+            overflow-x: hidden !important;
+        }
+
+        #container {
+            width: 100vw;
+            min-height: 100vh;
+            overscroll-behavior: none;
+            overscroll-behavior-y: none;
+        }
+
+        #scrollContainer {
+            position: relative;
+            background-color: tomato;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .animated-section {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        #scrollContainer > .section .video-area {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        #scrollContainer > .section .video-area > video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .animated-section .outer,
+        .animated-section .inner {
+            width: 100%;
+            height: 100%;
+            overflow-y: hidden;
+        }
+
+        .animated-section .bg {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            top: 0;
+            background-size: cover;
+            background-position: center;
+        }
+
+        /*.wrapper > .section.section-01 { z-index: 2;}
+        .wrapper > .section.section-02 { z-index: 2;}
+         .wrapper > .section.section-03 { z-index: 1;} */
+
+        .animated-section .txt-area  {
+            position: relative;
+            z-index: 10;
+            color: #fff;
+            font-size: 50px;
+            font-weight: 700;
+
+            width: 100%;
+            height: 100%;
+            padding: 100px;
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-align: end !important;
+            align-items: flex-end !important;
+            box-sizing: border-box;
+        }
+
+        .wrapper > .section.section-03 {
+            position: relative;
+            overflow-y: auto; 
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+            background-color: skyblue;
+            height: auto !important;
+        }
+
+        .pin-video {
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .pin-video .video-area {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .txt-area {
+            font-size: 70px;
+            color: #fff;
+            position: relative;
+            z-index: 10;
+            padding-top: 50vh;
+            padding-bottom: 50vh;
+        }
+
+        .txt-area ul li {
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-align: center !important;
+            align-items: center !important;
+        }
+
+        .txt-area ul li span {
+            -webkit-flex: 1 1 0%;
+            -ms-flex: 1 1 0%;
+            flex: 1 1 0%;
+            text-align: center;
+            padding: 50px 0;
+        }
+
+        .txt-area ul li span:nth-child(even) {
+            margin-top: 150px;
+        }
+
+        .pin-video-area {
+            width: 100%;
+            height: 100vh;
+            position: sticky;
+            top: 0;
+            -ms-flex-pack: center !important;
+            justify-content: center !important;
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-align: center !important;
+            align-items: center !important;
+            will-change: transform;  /* 성능 최적화 */
+            transform: translateZ(0);  /* GPU 레이어 강제 생성 */
+            backface-visibility: hidden;  /* 뒤면 숨김으로 성능 향상 */
+            position: absolute;
+            top: 0;
+            left: 50%;
+            -webkit-transform: translateX(-50%);
+            -ms-transform: translateX(-50%);
+            transform: translateX(-50%);
+        }
+
+        .section.section-04 {
+            height: 50vh !important;
+            background-color: pink;           
+        }
+
+        .scroll-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #000;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            z-index: 1000;
+        }
+
+        .scroll-section-01 { z-index: 10; }
+        .scroll-section-02 { z-index: 5;}
+        .scroll-section-03,
+        .scroll-section-03 { z-index: 2;}
+
+        .section-01 {
+            height: 50vh;
+            background-color: pink;
+        }
+
+        .section-06 {
+            height: 50vh;
+            background-color: lightblue;
+        }
+        
+    </style>
+</head>
+<body>
+    <a href="javascript:void(0)" class="scroll-to-top">Scroll to Top</a>
+    <div id="container">
+        <section class="section section-01 normal-section">
+            <div class="inner">
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. In, odio! Consequuntur nobis modi commodi aut natus veritatis labore provident est! Est obcaecati corrupti dolor, quaerat ducimus animi id accusamus magnam?
+            </div>
+        </section>
+        <div id="scrollContainer">
+            <section class="section scroll-section-01 move-section animated-section">
+                <div class="outer">
+                    <div class="inner">
+                        <div class="bg">
+                            <div class="video-area">
+                                <video src="./asset/video_main_visual_01.mp4" autoplay muted loop></video>
+                            </div>
+                            <div class="txt-area">
+                                <h2>Section 01</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="section scroll-section-02 move-section animated-section">
+                <div class="outer">
+                    <div class="inner">
+                        <div class="bg">
+                            <div class="video-area">
+                                <video src="./asset/video_main_visual_02.mp4" autoplay muted loop></video>
+                            </div>
+                            <div class="txt-area">
+                                <h2>Section 02</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="section scroll-section-03 normal-section end-section">
+                <div class="outer">
+                    <div class="inner">
+                        <div class="pin-video-area">
+                            <div class="pin-video">
+                                <div class="video-area">
+                                    <video src="./asset/video_main_visual_03.mp4" autoplay muted loop></video>
+                                </div>
+                            </div> 
+                        </div>                
+                        <article class="txt-area">                        
+                            <div class="txt-list">
+                                <ul>
+                                    <li>
+                                        <span>Lorem</span>
+                                        <span>ipsum</span>
+                                    </li>
+                                    <li>
+                                        <span>dolor</span>
+                                        <span>sit amet</span>
+                                    </li>
+                                    <li>
+                                        <span>consectetur</span>
+                                        <span>adipisicing</span>
+                                    </li>
+                                    <li>                        
+                                        <span>elit</span>
+                                        <span>Dolorem</span>
+                                    </li>
+                                    <li>
+                                        <span>Lorem</span>
+                                        <span>ipsum</span>
+                                    </li>
+                                    <li>
+                                        <span>dolor</span>
+                                        <span>sit amet</span>
+                                    </li>
+                                    <li>
+                                        <span>consectetur</span>
+                                        <span>adipisicing</span>
+                                    </li>
+                                    <li>                        
+                                        <span>elit</span>
+                                        <span>Dolorem</span>
+                                    </li>
+                                    <li>
+                                        <span>Lorem</span>
+                                        <span>ipsum</span>
+                                    </li>
+                                    <li>
+                                        <span>dolor</span>
+                                        <span>sit amet</span>
+                                    </li>
+                                    <li>
+                                        <span>consectetur</span>
+                                        <span>adipisicing</span>
+                                    </li>
+                                    <li>                        
+                                        <span>elit</span>
+                                        <span>Dolorem</span>
+                                    </li>
+                                    <li>
+                                        <span>Lorem</span>
+                                        <span>ipsum</span>
+                                    </li>
+                                    <li>
+                                        <span>dolor</span>
+                                        <span>sit amet</span>
+                                    </li>
+                                    <li>
+                                        <span>consectetur</span>
+                                        <span>adipisicing</span>
+                                    </li>
+                                    <li>                        
+                                        <span>elit</span>
+                                        <span>Dolorem</span>
+                                    </li>
+                                    <li>
+                                        <span>Lorem</span>
+                                        <span>ipsum</span>
+                                    </li>
+                                    <li>
+                                        <span>dolor</span>
+                                        <span>sit amet</span>
+                                    </li>
+                                    <li>
+                                        <span>consectetur</span>
+                                        <span>adipisicing</span>
+                                    </li>
+                                    <li>                        
+                                        <span>elit</span>
+                                        <span>Dolorem</span>
+                                    </li>
+                                    <li>
+                                        <span>consectetur</span>
+                                        <span>adipisicing</span>
+                                    </li>
+                                    <li>                        
+                                        <span>elit</span>
+                                        <span>Dolorem</span>
+                                    </li>
+                                    <li>
+                                        <span>Lorem</span>
+                                        <span>ipsum</span>
+                                    </li>
+                                    <li>
+                                        <span>dolor</span>
+                                        <span>sit amet</span>
+                                    </li>
+                                    <li>
+                                        <span>consectetur</span>
+                                        <span>adipisicing</span>
+                                    </li>
+                                    <li>                        
+                                        <span>elit</span>
+                                        <span>Dolorem</span>
+                                    </li>
+                                    <li>
+                                        <span>Lorem</span>
+                                        <span>ipsum</span>
+                                    </li>
+                                    <li>
+                                        <span>dolor</span>
+                                        <span>sit amet</span>
+                                    </li>
+                                    <li>
+                                        <span>consectetur</span>
+                                        <span>adipisicing</span>
+                                    </li>
+                                    <li>                        
+                                        <span>elit</span>
+                                        <span>Dolorem</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </article>  
+                    </div>  
+                </div>
+            </section>     
+        </div>   
+        <section class="section section-06 normal-section">
+            <div class="inner">
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. In, odio! Consequuntur nobis modi commodi aut natus veritatis labore provident est! Est obcaecati corrupti dolor, quaerat ducimus animi id accusamus magnam?
+            </div>
+        </section>
+    </div>    
+    
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/DrawSVGPlugin.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/smooth-scrollbar@8.8.4/dist/smooth-scrollbar.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/smoothscroll/1.5.1/SmoothScroll.min.js"></script>
+
+<script>        
+    let scrollContainer = document.getElementById("scrollContainer");
+    let animatedSections = scrollContainer.querySelectorAll(".animated-section");
+    let texts = scrollContainer.querySelector(".scroll-section-03");
+    let pinVideoArea = scrollContainer.querySelector(".pin-video-area");
+    let txtList = scrollContainer.querySelector(".txt-list");
+
+
+    // 이동할 거리 (텍스트 섹션의 스크롤 가능한 거리)
+    const scrollDistance = texts.scrollHeight - window.innerHeight;
+
+    let mainTl = gsap.timeline({
+        scrollTrigger: {
+            trigger: scrollContainer,
+            start: 'top top',
+            end: '+=1000%',
+            pin: true,
+            pinSpacing: true,
+            scrub: 1,
+            //markers: true,
+        }
+    });
+
+    mainTl
+        .to(animatedSections[0], {
+            clipPath: 'inset(0 0 100% 0)',
+            duration: 1,
+        })
+        .to(animatedSections[1], {
+            clipPath: 'inset(0 0 100% 0)',
+            duration: 1,
+        })
+        .to(texts, {
+            y: -scrollDistance,
+            duration: 8,
+            ease: 'none',
+        })
+        .to(pinVideoArea, {
+            y: scrollDistance, 
+            duration: 8,
+            ease: 'none',
+        }, '<');
+
+
+
+</script>
+</html>
